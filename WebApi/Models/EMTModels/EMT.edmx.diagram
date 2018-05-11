@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6d11792abeba4c8aa693b78b89ab29ee" Name="Diagram1" ZoomLevel="88" >
+        <EntityTypeShape EntityType="EMT.t_DY_YZK" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="EMT.t_DY_YZKEntry1" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="EMT.t_DY_YZKEntry2" Width="1.5" PointX="2.75" PointY="3.75" />
+        <EntityTypeShape EntityType="EMT.t_DY_WorkProcedure" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="EMT.t_User" Width="1.5" PointX="5.375" PointY="4.75" />
+        <EntityTypeShape EntityType="EMT.t_ICItem" Width="1.5" PointX="7.375" PointY="0.75" />
+        <EntityTypeShape EntityType="EMT.t_DY_AmountType" Width="1.5" PointX="9.375" PointY="0.75" />
+        <EntityTypeShape EntityType="EMT.t_Organization" Width="1.5" PointX="9.375" PointY="4.75" />
+        <EntityTypeShape EntityType="EMT.t_BOS200000121Entry2" Width="1.5" PointX="11.375" PointY="0.75" />
+        <EntityTypeShape EntityType="EMT.t_BOS200000123Entry2" Width="1.5" PointX="11.375" PointY="3.75" />
+        <EntityTypeShape EntityType="EMT.t_BOS200000124Entry2" Width="1.5" PointX="3.375" PointY="11.75" />
+        <EntityTypeShape EntityType="EMT.t_SubMessage" Width="1.5" PointX="11.375" PointY="6.75" />
+        <EntityTypeShape EntityType="EMT.ICClassCheckStatus200000127" Width="1.5" PointX="11.375" PointY="11.75" />
+        <EntityTypeShape EntityType="EMT.t_Department" Width="1.5" PointX="13.375" PointY="0.75" />
+        <EntityTypeShape EntityType="EMT.t_BOS200000128Entry2" Width="1.5" PointX="13.375" PointY="7.75" />
+        <EntityTypeShape EntityType="EMT.t_BOS200000130Entry2" Width="1.5" PointX="13.375" PointY="11.75" />
+        <EntityTypeShape EntityType="EMT.t_dy_workprocedureentry" Width="1.5" PointX="3.375" PointY="14.75" />
+        <EntityTypeShape EntityType="EMT.t_DY_ColorNo" Width="1.5" PointX="13.375" PointY="14.75" />
+        <EntityTypeShape EntityType="EMT.t_DY_ColorNoEntry" Width="1.5" PointX="15.375" PointY="0.75" />
+        <EntityTypeShape EntityType="EMT.t_DY_ShaPi" Width="1.5" PointX="15.375" PointY="6.75" />
+        <EntityTypeShape EntityType="EMT.t_ICItemCore" Width="1.5" PointX="15.375" PointY="10.75" />
+        <EntityTypeShape EntityType="EMT.t_TempDSK" Width="1.5" PointX="17.375" PointY="0.75" />
+        <EntityTypeShape EntityType="EMT.t_TempDSKEntry2" Width="1.5" PointX="17.375" PointY="5.75" />
+        <EntityTypeShape EntityType="EMT.t_DY_MonldingGYLC" Width="1.5" PointX="17.375" PointY="10.75" />
+        <EntityTypeShape EntityType="EMT.t_BOS200000129Entry2" Width="1.5" PointX="3.375" PointY="18.75" />
+        <EntityTypeShape EntityType="EMT.ICStockBill" Width="1.5" PointX="19.375" PointY="0.75" />
+        <EntityTypeShape EntityType="EMT.ICStockBillEntry" Width="1.5" PointX="13.375" PointY="20.75" />
+        <EntityTypeShape EntityType="EMT.t_MeasureUnit" Width="1.5" PointX="15.375" PointY="20.75" />
+        <EntityTypeShape EntityType="EMT.t_DY_RGStockBill" Width="1.5" PointX="21.375" PointY="0.75" />
+        <EntityTypeShape EntityType="EMT.t_DY_RGStockBillEntry" Width="1.5" PointX="3.375" PointY="21.75" />
+        <EntityTypeShape EntityType="EMT.t_Emp" Width="1.5" PointX="21.375" PointY="4.75" />
+        <EntityTypeShape EntityType="EMT.t_DY_GYLC" Width="1.5" PointX="21.375" PointY="20.75" />
+        <EntityTypeShape EntityType="EMT.t_DY_GYLCEntry" Width="1.5" PointX="23.375" PointY="0.75" />
+        <EntityTypeShape EntityType="EMT.CustomWorkFlowEntrySet" Width="1.5" PointX="21.375" PointY="14.75" />
+        <EntityTypeShape EntityType="EMT.CustomWorkFlowSet" Width="1.5" PointX="21.375" PointY="17.75" />
+        <EntityTypeShape EntityType="EMT.GYLCLogSet" Width="1.5" PointX="23.375" PointY="3.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

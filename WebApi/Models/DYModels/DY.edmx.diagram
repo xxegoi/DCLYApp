@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="db0ad7969ebe48c28e7ca09a37c28931" Name="Diagram1" ZoomLevel="74" >
+        <EntityTypeShape EntityType="DY.ControllerActionRoleSet" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DY.ControllerActionSet" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DY.t_RoleSet" Width="1.5" PointX="7.125" PointY="3.375" />
+        <EntityTypeShape EntityType="DY.t_UserRoleSet" Width="1.5" PointX="9.625" PointY="3.5" />
+        <EntityTypeShape EntityType="DY.t_Users" Width="1.5" PointX="2.75" PointY="4.75" />
+        <EntityTypeShape EntityType="DY.t_Material" Width="1.5" PointX="4.875" PointY="2.875" />
+        <EntityTypeShape EntityType="DY.t_DYJXC_GXHB" PointX="5.375" PointY="6.75" Width="1.5" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
