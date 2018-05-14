@@ -78,12 +78,17 @@ namespace WebApi.Controllers.DY
 
             DataTable dt = DataTableExtensions.ToDataTable<TestQueryModel>(data);
 
-            string filePath = string.Format("{0}/{1}", HttpContext.Current.Server.MapPath("~/App_Data"),"Export.xls");
+            List<DataTable> dts = new List<DataTable>();
 
-            NPOIHelper.ExportToFile(dt, filePath);
+            dts.Add(dt);
 
-            return new FileResult(filePath);
+            return new FileResult(NPOIHelper.ExportToByteArray(dts),"Export.xls");
+
+            //string filePath = string.Format("{0}/{1}", HttpContext.Current.Server.MapPath("~/App_Data"),"Export.xls");
+
+            //NPOIHelper.ExportToFile(dt, filePath);
         }
+
 
     }
 }

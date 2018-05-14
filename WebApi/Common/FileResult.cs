@@ -14,38 +14,38 @@ namespace WebApi.Common
 {
     class FileResult : IHttpActionResult
     {
-        private readonly string _filePath;
-        //private readonly Stream _fileStream;
+        //private readonly string _filePath;
+        private readonly Stream _fileStream;
         private readonly string _fileName;
         private readonly string _contentType;
 
 
-        public FileResult(string filePath, string contentType = null)
-        {
-            if (filePath == null) throw new ArgumentNullException("filePath");
-
-            _filePath = filePath;
-            _contentType = contentType;
-        }
-
-        //public FileResult(Stream fileStream,string fileName, string contentType = null)
+        //public FileResult(string filePath, string contentType = null)
         //{
-        //    if (fileStream == null) throw new ArgumentNullException("_fileStream");
+        //    if (filePath == null) throw new ArgumentNullException("filePath");
 
-        //    _fileStream = fileStream;
-        //    _fileName = fileName;
+        //    _filePath = filePath;
         //    _contentType = contentType;
         //}
+
+        public FileResult(byte[] data, string fileName, string contentType = null)
+        {
+            if (data == null) throw new ArgumentNullException("_fileStream");
+
+            _fileStream = new MemoryStream(data);
+            _fileName = fileName;
+            _contentType = contentType;
+        }
 
         public Task<HttpResponseMessage> ExecuteAsync(CancellationToken cancellationToken)
         {
             var response = new HttpResponseMessage(HttpStatusCode.OK)
             {
-                Content = new StreamContent(File.OpenRead(_filePath))
-                //Content = new StreamContent(_fileStream)
+                //Content = new StreamContent(File.OpenRead(_filePath))
+                Content = new StreamContent(_fileStream)
             };
 
-            var contentType = _contentType ?? MimeMapping.GetMimeMapping(Path.GetExtension(_filePath));
+            var contentType = _contentType ?? MimeMapping.GetMimeMapping(Path.GetExtension(_fileName));
             response.Content.Headers.ContentType = new MediaTypeHeaderValue(contentType);
 
             return Task.FromResult(response);

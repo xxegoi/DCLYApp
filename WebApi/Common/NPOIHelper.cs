@@ -62,7 +62,7 @@ namespace WebApi.Common
             }
         }
 
-        public static Stream ExportToStream(IEnumerable<DataTable> dataTables)
+        public static byte[] ExportToByteArray(IEnumerable<DataTable> dataTables)
         {
             IWorkbook workbook = new XSSFWorkbook();
             int i = 0;
@@ -97,7 +97,9 @@ namespace WebApi.Common
             {
                 workbook.Write(stream);
 
-                return stream;
+                byte[] bytes = stream.ToArray();
+
+                return bytes;
             }
 
         }
