@@ -10,7 +10,7 @@ using WebApi.Models.EMTModels;
 
 namespace WebApi.Common
 {
-    [LoginAuthorize]
+    //[LoginAuthorize]
     public class BaseApiController : ApiController
     {
         //此类用户添加控制属性
