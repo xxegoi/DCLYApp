@@ -7,10 +7,17 @@ using System.IO;
 using System.Linq;
 using System.Web;
 
+
 namespace WebApi.Common
 {
+    /// <summary>
+    /// NPOI EXCEL操作工具类
+    /// </summary>
     public class NPOIHelper
     {
+        /// <summary>
+        /// 导出到本地文件
+        /// </summary>
         public static void ExportToFile(DataSet dataSet, string fileFullPath)
         {
             List<DataTable> dts = new List<DataTable>();
@@ -18,6 +25,9 @@ namespace WebApi.Common
             ExportToFile(dts, fileFullPath);
         }
 
+        /// <summary>
+        /// 导出到本地文件
+        /// </summary>
         public static void ExportToFile(DataTable dataTable, string fileFullPath)
         {
             List<DataTable> dts = new List<DataTable>();
@@ -62,6 +72,9 @@ namespace WebApi.Common
             }
         }
 
+        /// <summary>
+        /// 转化成流
+        /// </summary>
         public static byte[] ExportToByteArray(IEnumerable<DataTable> dataTables)
         {
             IWorkbook workbook = new XSSFWorkbook();

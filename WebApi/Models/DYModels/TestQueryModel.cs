@@ -5,6 +5,9 @@ using System.Web;
 
 namespace WebApi.Models.DYModels
 {
+    /// <summary>
+    /// 查询 模型
+    /// </summary>
     public class TestQueryModel
     {
         public string FinishDate { get; set; }
@@ -45,5 +48,47 @@ namespace WebApi.Models.DYModels
 
         public string n { get; set; }
 
+    }
+
+    /// <summary>
+    /// 导出  模型
+    /// </summary>
+    public class TestExportModel
+    {
+        public string 完成日期 { get; set; }
+
+        public string 缸号 { get; set; }
+
+        public string 客户 { get; set; }
+
+        public string 布种 { get; set; }
+
+        public string 颜色 { get; set; }
+
+        public string 顶破力26mm { get; set; }
+
+        public string 成品直缩 { get; set; }
+
+        public string 成品横缩 { get; set; }
+
+        public string 成品扭度 { get; set; }
+
+        public string 成品幅宽 { get; set; }
+
+        public string 成品克重 { get; set; }
+
+        public string 要求幅宽 { get; set; }
+
+        public string 要求克重 { get; set; }
+
+        public string 备注 { get; set; }
+
+        public string 测试编码 { get; set; }
+
+        public string 要求直缩 { get; set; }
+
+        public string 要求横缩 { get; set; }
+
+        public string 要求扭度 { get; set; }
     }
 }

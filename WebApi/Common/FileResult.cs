@@ -12,7 +12,10 @@ using System.Web.Http;
 
 namespace WebApi.Common
 {
-    class FileResult : IHttpActionResult
+    /// <summary>
+    /// 实现一个HttpResponseMessage异步命令，用于文件传输
+    /// </summary>
+    public class FileResult : IHttpActionResult
     {
         //private readonly string _filePath;
         private readonly Stream _fileStream;
@@ -28,6 +31,9 @@ namespace WebApi.Common
         //    _contentType = contentType;
         //}
 
+        /// <summary>
+        /// 传入文件或者流的二进制数组以及文件名，文件名用于映射MIME类型，contentType可以默认为空
+        /// </summary>
         public FileResult(byte[] data, string fileName, string contentType = null)
         {
             if (data == null) throw new ArgumentNullException("_fileStream");
@@ -37,6 +43,9 @@ namespace WebApi.Common
             _contentType = contentType;
         }
 
+        /// <summary>
+        /// IHttpActionResult的ExecuteAsync方法实现
+        /// </summary>
         public Task<HttpResponseMessage> ExecuteAsync(CancellationToken cancellationToken)
         {
             var response = new HttpResponseMessage(HttpStatusCode.OK)

@@ -11,11 +11,8 @@ namespace WebApi.Controllers.DY
     public static class DataTableExtensions
     {
         /// <summary>  
-
         /// 转化一个DataTable  
-
         /// </summary>  
-
         /// <typeparam name="T"></typeparam>  
         /// <param name="list"></param>  
         /// <returns></returns>  
