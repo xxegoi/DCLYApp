@@ -56,6 +56,10 @@ namespace WebApi.Common
 
             var contentType = _contentType ?? MimeMapping.GetMimeMapping(Path.GetExtension(_fileName));
             response.Content.Headers.ContentType = new MediaTypeHeaderValue(contentType);
+            response.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment")
+            {
+                FileName = _fileName
+            };
 
             return Task.FromResult(response);
         }

@@ -15,12 +15,12 @@ using WebApi.Models.DYModels;
 
 namespace WebApi.Controllers.DY
 {
-    public class TestController : DYApiController
+    public class TestDataController : DYApiController
     {
         /// <summary>
         /// 传入的 json 格式 {page:0,size:1,begindate:'2018-5-1',enddate:'2018-6-1'}
         /// </summary>
-        [Route("test/query")]
+        [Route("testdata/query")]
         [HttpPost]
         [Description("测试查询页")]
         public object Query(JObject obj)
@@ -48,10 +48,40 @@ namespace WebApi.Controllers.DY
             return new SuccessResult() { Data = new { total= data.Count, list=data } };
         }
 
+        //[Route("test/query2")]
+        //[HttpPost]
+        //[Description("测试查询页")]
+        //public object Query2(JObject obj)
+        //{
+        //    //int page = int.Parse(obj.GetValue("page").ToString());
+        //    //int size = int.Parse(obj.GetValue("size").ToString());
+
+        //    string begindate = obj.GetValue("begindate").ToString();
+        //    string enddate = obj.GetValue("enddate").ToString();
+
+
+        //    string sql = @"SELECT CONVERT(VARCHAR(10), REPLACE(REPLACE(REPLACE([fd],'年','-'),'月','-'),'日',' '),120) AS FinishDate ,
+        //                RTRIM([fd]) AS[fd] , RTRIM([lot]) AS[lot], RTRIM([kf]) AS[kf] , RTRIM([BN]) AS[BN] , RTRIM([CN]) AS[CN] , RTRIM([bur]) AS[bur] ,
+        //                RTRIM([tfl]) AS[tfl] , rtrim([tfw]) AS[tfw] , RTRIM([fn]) AS[fn] , RTRIM([l]) AS[l] , RTRIM([g]) AS[g] , RTRIM([pl]) AS[pl] ,
+        //                RTRIM([pg]) AS[pg] , RTRIM([sm]) AS[sm] , RTRIM([Tno]) AS Tno, RTRIM( [fl]) AS[fl], RTRIM([fw]) AS[fw] ,RTRIM( [n]) AS[n]
+        //                FROM t_DYJXC_TestData
+        //                WHERE CONVERT(VARCHAR(10), REPLACE(REPLACE(REPLACE([fd], '年', '-'), '月', '-'), '日', ' '),120) >= @begindate AND
+        //                CONVERT(VARCHAR(10), REPLACE(REPLACE(REPLACE([fd], '年', '-'), '月', '-'), '日', ' '),120) <= @enddate";
+
+        //    SqlParameter begindateParam = new SqlParameter("@begindate", begindate);
+        //    SqlParameter enddateParam = new SqlParameter("@enddate", enddate);
+        //    object[] parameters = new object[] { begindateParam, enddateParam };
+
+        //    //按照分页要求查询SQL的结果
+        //    var data = db.Database.SqlQuery<TestQueryModel>(sql, parameters).OrderBy(p => p.fd).ToList();
+
+        //    return new SuccessResult() { Data = new { total = data.Count, list = data } };
+        //}
+
         /// <summary>
         /// 传入 的 json 格式 {begindate:'2018-5-1',enddate:'2018-6-1'}
         /// </summary>
-        [Route("test/export")]
+        [Route("testdata/export")]
         [HttpPost]
         [Description("测试页导出")]
         public IHttpActionResult Export(JObject obj)
@@ -97,7 +127,7 @@ namespace WebApi.Controllers.DY
         //                    WHERE CONVERT(VARCHAR(10), REPLACE(REPLACE(REPLACE([fd],'年','-'),'月','-'),'日',' '),120) >= '2017-05-01' AND 
         //                    CONVERT(VARCHAR(10), REPLACE(REPLACE(REPLACE([fd],'年','-'),'月','-'),'日',' '),120) <= '2018-09-11'";
 
-        //    var data = db.Database.SqlQuery<TestExportModel>(sql).OrderBy(o=>o.完成日期).ToList();
+        //    var data = db.Database.SqlQuery<TestExportModel>(sql).OrderBy(o => o.完成日期).ToList();
 
         //    //for(int i=0;i<4;i++)
         //    //{
@@ -110,7 +140,7 @@ namespace WebApi.Controllers.DY
 
         //    dts.Add(dt);
 
-        //    return new FileResult(NPOIHelper.ExportToByteArray(dts), "Export.xls");
+        //    return new FileResult(NPOIHelper.ExportToByteArray(dts), "Export.xls", "application/octet-stream");
 
         //}
 

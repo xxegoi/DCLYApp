@@ -243,7 +243,7 @@
     <Compile Include="Controllers\DY\DataTableExtensions.cs" />
     <Compile Include="Controllers\DY\PermissionController.cs" />
     <Compile Include="Controllers\DY\RoleManageController.cs" />
-    <Compile Include="Controllers\DY\TestController.cs" />
+    <Compile Include="Controllers\DY\TestDataController.cs" />
     <Compile Include="Controllers\DY\UserManageController.cs" />
     <Compile Include="Controllers\EMT\ColorNoController.cs" />
     <Compile Include="Controllers\EMT\WorkFlowController.cs" />
