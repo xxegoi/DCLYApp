@@ -30,6 +30,9 @@ namespace WebApi.Controllers.DY
             var begindate = obj.GetValue("begindate") == null ? DateTime.Now.Date : DateTime.Parse(obj.GetValue("begindate").ToString());
             var enddate = obj.GetValue("enddate") == null ? DateTime.Now.Date : DateTime.Parse(obj.GetValue("enddate").ToString());
 
+            //增加过滤条件，缸号
+            var fgh = obj.GetValue("fgh").ToString();
+
             string sql = @"SELECT CONVERT(VARCHAR(10), REPLACE(REPLACE(REPLACE([fd],'年','-'),'月','-'),'日',' '),120) AS FinishDate ,
                         RTRIM([fd]) AS[fd] , RTRIM([lot]) AS[lot], RTRIM([kf]) AS[kf] , RTRIM([BN]) AS[BN] , RTRIM([CN]) AS[CN] , RTRIM([bur]) AS[bur] ,
                         RTRIM([tfl]) AS[tfl] , rtrim([tfw]) AS[tfw] , RTRIM([fn]) AS[fn] , RTRIM([l]) AS[l] , RTRIM([g]) AS[g] , RTRIM([pl]) AS[pl] ,
@@ -42,10 +45,20 @@ namespace WebApi.Controllers.DY
 
             SqlParameter begindateParam = new SqlParameter("@begindate", begindate);
             SqlParameter enddateParam = new SqlParameter("@enddate", enddate);
-            object[] parameters = new object[] { begindateParam, enddateParam };
+            List<SqlParameter> parameters = new List<SqlParameter>();
+            parameters.Add(begindateParam);
+            parameters.Add(enddateParam);
+
+            //如果缸号不为空，则添加过滤条件
+            if (!string.IsNullOrEmpty(fgh))
+            {
+                sql = sql + " AND lot=@lot";
+                parameters.Add(new SqlParameter("@lot", fgh));
+            }
 
             //按照分页要求查询SQL的结果
-            var data = db.Database.SqlQuery<TestQueryModel>(sql, parameters).OrderBy(p=>p.fd).Skip((page-1)*size).Take(size).ToList();
+            //查询条件参数LIST要ToArray转换为数组，不然报错
+            var data = db.Database.SqlQuery<TestQueryModel>(sql, parameters.ToArray()).OrderBy(p=>p.fd).Skip((page-1)*size).Take(size).ToList();
 
             return new SuccessResult() { Data = new { total= total, list=data } };
         }
