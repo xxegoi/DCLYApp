@@ -58,6 +58,7 @@ namespace WebApi.Controllers.DY
 
         [HttpGet]
         [Description("注销")]
+        [AllowAnonymous]
         public object Logout()
         {
             FormsAuthentication.SignOut();

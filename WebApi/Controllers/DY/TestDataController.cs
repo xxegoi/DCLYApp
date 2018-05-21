@@ -15,6 +15,7 @@ using WebApi.Models.DYModels;
 
 namespace WebApi.Controllers.DY
 {
+    [Description(@"测试数据查询\导出")]
     public class TestDataController : DYApiController
     {
         /// <summary>
@@ -41,6 +42,10 @@ namespace WebApi.Controllers.DY
                         WHERE CONVERT(VARCHAR(10), REPLACE(REPLACE(REPLACE([fd], '年', '-'), '月', '-'), '日', ' '),120) >= @begindate AND
                         CONVERT(VARCHAR(10), REPLACE(REPLACE(REPLACE([fd], '年', '-'), '月', '-'), '日', ' '),120) <= @enddate";
 
+            string totalSql = @"select count(*) from t_DYJXC_TestData
+            WHERE CONVERT(VARCHAR(10), REPLACE(REPLACE(REPLACE([fd], '年', '-'), '月', '-'), '日', ' '),120) >= @begindate AND
+                        CONVERT(VARCHAR(10), REPLACE(REPLACE(REPLACE([fd], '年', '-'), '月', '-'), '日', ' '), 120) <= @enddate";
+
 
 
             SqlParameter begindateParam = new SqlParameter("@begindate", begindate);
@@ -53,25 +58,29 @@ namespace WebApi.Controllers.DY
             parameters.Add(begindateParam);
             parameters.Add(enddateParam);
 
+            var condition = "";
+
             //如果缸号不为空，则添加过滤条件----青
             if (!string.IsNullOrEmpty(fgh))
             {
                 //如果日期值为空则通过缸号全表查询，否则查询日期区间内与缸号匹配的记------青
                 if (string.IsNullOrEmpty(obj.GetValue("begindate").ToString()) || string.IsNullOrEmpty(obj.GetValue("enddate").ToString()))
                 {
-                    sql = sql + " OR lot=@lot";
+                    condition =  " OR lot=@lot";
                 }
                 else
                 {
-                    sql = sql + " AND lot=@lot";
+                    condition =  " AND lot=@lot";
                 }
+
+                sql += condition;
+
+                totalSql += condition;
 
                 parameters.Add(new SqlParameter("@lot", fgh));
             }
 
-            var total = db.Database.SqlQuery<int>(@"select count(*) from t_DYJXC_TestData
-            WHERE CONVERT(VARCHAR(10), REPLACE(REPLACE(REPLACE([fd], '年', '-'), '月', '-'), '日', ' '),120) >= @begindate AND
-                        CONVERT(VARCHAR(10), REPLACE(REPLACE(REPLACE([fd], '年', '-'), '月', '-'), '日', ' '), 120) <= @enddate",
+            var total = db.Database.SqlQuery<int>(totalSql,
                         new SqlParameter[] { new SqlParameter("@begindate", begindate), new SqlParameter("@enddate", enddate) });
 
             //按照分页要求查询SQL的结果
@@ -117,7 +126,7 @@ namespace WebApi.Controllers.DY
         //[Route("testdata/export")]
         [HttpPost]
         [Description("测试页导出")]
-        public IHttpActionResult Export(JObject obj)
+        public object Export(JObject obj)
         {
             var begindate = obj.GetValue("begindate") == null ? DateTime.Now.Date : DateTime.Parse(obj.GetValue("begindate").ToString());
             var enddate = obj.GetValue("enddate") == null ? DateTime.Now.Date : DateTime.Parse(obj.GetValue("enddate").ToString());

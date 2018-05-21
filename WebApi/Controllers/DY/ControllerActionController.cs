@@ -75,7 +75,7 @@ namespace WebApi.Controllers.DY
                             {
                                 ControllerActionSet ca = new ControllerActionSet()
                                 {
-                                    ControllerName = p.Name,
+                                    ControllerName = p.Name.Replace("Controller",""),
                                     Name = a.Name,
                                     //读取ACTION的Description属性值作为ACTION的显示名称
                                     ActionDisplayName = a.CustomAttributes.Where(o => o.AttributeType == typeof(DescriptionAttribute)).ToList()[0].ConstructorArguments.ToList()[0].Value.ToString(),
