@@ -39,14 +39,12 @@ namespace WebApi.Controllers.DY
                         RTRIM([tfl]) AS[tfl] , rtrim([tfw]) AS[tfw] , RTRIM([fn]) AS[fn] , RTRIM([l]) AS[l] , RTRIM([g]) AS[g] , RTRIM([pl]) AS[pl] ,
                         RTRIM([pg]) AS[pg] , RTRIM([sm]) AS[sm] , RTRIM([Tno]) AS Tno, RTRIM( [fl]) AS[fl], RTRIM([fw]) AS[fw] ,RTRIM( [n]) AS[n]
                         FROM t_DYJXC_TestData
-                        WHERE CONVERT(VARCHAR(10), REPLACE(REPLACE(REPLACE([fd], '年', '-'), '月', '-'), '日', ' '),120) >= @begindate AND
+                        WHERE 1=1 ";
+
+            string totalSql = @"select count(*) from t_DYJXC_TestData WHERE 1=1 ";
+
+            var dateCondition = @"AND CONVERT(VARCHAR(10), REPLACE(REPLACE(REPLACE([fd], '年', '-'), '月', '-'), '日', ' '),120) >= @begindate AND
                         CONVERT(VARCHAR(10), REPLACE(REPLACE(REPLACE([fd], '年', '-'), '月', '-'), '日', ' '),120) <= @enddate";
-
-            string totalSql = @"select count(*) from t_DYJXC_TestData
-            WHERE CONVERT(VARCHAR(10), REPLACE(REPLACE(REPLACE([fd], '年', '-'), '月', '-'), '日', ' '),120) >= @begindate AND
-                        CONVERT(VARCHAR(10), REPLACE(REPLACE(REPLACE([fd], '年', '-'), '月', '-'), '日', ' '), 120) <= @enddate";
-
-
 
             SqlParameter begindateParam = new SqlParameter("@begindate", begindate);
             SqlParameter enddateParam = new SqlParameter("@enddate", enddate);
@@ -55,33 +53,37 @@ namespace WebApi.Controllers.DY
 
             //用LIST更容易操作-----青
             List<SqlParameter> parameters = new List<SqlParameter>();
-            parameters.Add(begindateParam);
-            parameters.Add(enddateParam);
+            List<SqlParameter> totalParmeters = new List<SqlParameter>();
 
             var condition = "";
+
+            if (!string.IsNullOrEmpty(begindate) || !string.IsNullOrEmpty(enddate))
+            {
+                sql += dateCondition;
+                totalSql += dateCondition;
+                totalParmeters.Add(new SqlParameter("@begindate", begindate));
+                totalParmeters.Add(new SqlParameter("@enddate", enddate));
+                parameters.Add(begindateParam);
+                parameters.Add(enddateParam);
+            }
 
             //如果缸号不为空，则添加过滤条件----青
             if (!string.IsNullOrEmpty(fgh))
             {
                 //如果日期值为空则通过缸号全表查询，否则查询日期区间内与缸号匹配的记------青
-                if (string.IsNullOrEmpty(obj.GetValue("begindate").ToString()) || string.IsNullOrEmpty(obj.GetValue("enddate").ToString()))
-                {
-                    condition =  " OR lot=@lot";
-                }
-                else
-                {
-                    condition =  " AND lot=@lot";
-                }
+               
+               condition =  " AND lot=@lot";
 
                 sql += condition;
 
                 totalSql += condition;
 
                 parameters.Add(new SqlParameter("@lot", fgh));
+                totalParmeters.Add(new SqlParameter("@lot", fgh));
             }
 
             var total = db.Database.SqlQuery<int>(totalSql,
-                        new SqlParameter[] { new SqlParameter("@begindate", begindate), new SqlParameter("@enddate", enddate) });
+                        totalParmeters.ToArray());
 
             //按照分页要求查询SQL的结果
             //查询条件参数LIST要ToArray转换为数组，不然报错---------青

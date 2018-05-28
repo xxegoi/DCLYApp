@@ -10,8 +10,9 @@
         <EntityTypeShape EntityType="DY.t_RoleSet" Width="1.5" PointX="7.125" PointY="3.375" />
         <EntityTypeShape EntityType="DY.t_UserRoleSet" Width="1.5" PointX="9.625" PointY="3.5" />
         <EntityTypeShape EntityType="DY.t_Users" Width="1.5" PointX="2.75" PointY="4.75" />
-        <EntityTypeShape EntityType="DY.t_Material" Width="1.5" PointX="4.875" PointY="2.875" />
         <EntityTypeShape EntityType="DY.t_DYJXC_GXHB" PointX="5.375" PointY="6.75" Width="1.5" />
+        <EntityTypeShape EntityType="DY.t_HK_PGData" Width="1.5" PointX="7.375" PointY="6.75" />
+        <EntityTypeShape EntityType="DY.t_Material" Width="1.5" PointX="9.375" PointY="6.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -20,10 +20,12 @@ namespace WebApi.Models.DYModels
         public string FName { get; set; }
         public Nullable<int> FUnitID { get; set; }
         public string FUnitName { get; set; }
+        public Nullable<decimal> FKFPeriod { get; set; }
         public string FAlias { get; set; }
         public Nullable<short> FDeleted { get; set; }
         public Nullable<int> FParentID { get; set; }
-        public string FShortNumber { get; set; }
-        public Nullable<decimal> FKFPeriod { get; set; }
+        public Nullable<double> FOrderPrice { get; set; }
+        public string FColorNo { get; set; }
+        public Nullable<decimal> FCostPerTon { get; set; }
     }
 }

@@ -241,6 +241,7 @@
     <Compile Include="Controllers\DY\AccountController.cs" />
     <Compile Include="Controllers\DY\ControllerActionController.cs" />
     <Compile Include="Controllers\DY\DataTableExtensions.cs" />
+    <Compile Include="Controllers\DY\HKPgDataController.cs" />
     <Compile Include="Controllers\DY\PermissionController.cs" />
     <Compile Include="Controllers\DY\RoleManageController.cs" />
     <Compile Include="Controllers\DY\TestDataController.cs" />
@@ -257,6 +258,9 @@
     <Compile Include="Models\DYModels\PermissionViewModel.cs" />
     <Compile Include="Models\DYModels\TestQueryModel.cs" />
     <Compile Include="Models\DYModels\t_DYJXC_GXHB.cs">
+      <DependentUpon>DY.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DYModels\t_HK_PGData.cs">
       <DependentUpon>DY.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DYModels\t_Material.cs">

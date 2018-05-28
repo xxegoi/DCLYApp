@@ -19,7 +19,7 @@ namespace WebApi.Controllers.DY
         [HttpPost]
         [AllowAnonymous]
         [Description("登录")]
-        public object Login([FromBody]JObject model)
+        public object Login(JObject model)
         {
             try
             {

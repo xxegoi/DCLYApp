@@ -30,7 +30,8 @@ namespace WebApi.Models.DYModels
         public virtual DbSet<t_RoleSet> t_RoleSet { get; set; }
         public virtual DbSet<t_UserRoleSet> t_UserRoleSet { get; set; }
         public virtual DbSet<t_Users> t_Users { get; set; }
-        //public virtual DbSet<t_Material> t_Material { get; set; }
         public virtual DbSet<t_DYJXC_GXHB> t_DYJXC_GXHB { get; set; }
+        public virtual DbSet<t_HK_PGData> t_HK_PGData { get; set; }
+        public virtual DbSet<t_Material> t_Material { get; set; }
     }
 }
