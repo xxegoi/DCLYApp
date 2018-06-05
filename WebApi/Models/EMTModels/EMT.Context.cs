@@ -29,8 +29,6 @@ namespace WebApi.Models.EMTModels
         public virtual DbSet<t_DY_YZKEntry1> t_DY_YZKEntry1 { get; set; }
         public virtual DbSet<t_DY_YZKEntry2> t_DY_YZKEntry2 { get; set; }
         public virtual DbSet<t_DY_WorkProcedure> t_DY_WorkProcedure { get; set; }
-        public virtual DbSet<t_User> t_User { get; set; }
-        public virtual DbSet<t_ICItem> t_ICItem { get; set; }
         public virtual DbSet<t_DY_AmountType> t_DY_AmountType { get; set; }
         public virtual DbSet<t_Organization> t_Organization { get; set; }
         public virtual DbSet<t_BOS200000121Entry2> t_BOS200000121Entry2 { get; set; }
@@ -55,11 +53,16 @@ namespace WebApi.Models.EMTModels
         public virtual DbSet<t_MeasureUnit> t_MeasureUnit { get; set; }
         public virtual DbSet<t_DY_RGStockBill> t_DY_RGStockBill { get; set; }
         public virtual DbSet<t_DY_RGStockBillEntry> t_DY_RGStockBillEntry { get; set; }
-        public virtual DbSet<t_Emp> t_Emp { get; set; }
         public virtual DbSet<t_DY_GYLC> t_DY_GYLC { get; set; }
         public virtual DbSet<t_DY_GYLCEntry> t_DY_GYLCEntry { get; set; }
         public virtual DbSet<CustomWorkFlowEntrySet> CustomWorkFlowEntrySet { get; set; }
         public virtual DbSet<CustomWorkFlowSet> CustomWorkFlowSet { get; set; }
         public virtual DbSet<GYLCLogSet> GYLCLogSet { get; set; }
+        public virtual DbSet<t_Emp> t_Emp { get; set; }
+        public virtual DbSet<t_User> t_User { get; set; }
+        public virtual DbSet<t_ICItem> t_ICItem { get; set; }
+        public virtual DbSet<v_DYJXC_CustomYZKTrack> v_DYJXC_CustomYZKTrack { get; set; }
+        public virtual DbSet<v_DYJXC_YZKTrack> v_DYJXC_YZKTrack { get; set; }
+        public virtual DbSet<v_DYJXC_YZKTrack_Head> v_DYJXC_YZKTrack_Head { get; set; }
     }
 }

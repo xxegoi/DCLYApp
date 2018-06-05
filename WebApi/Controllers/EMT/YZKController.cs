@@ -14,7 +14,7 @@ using System.ComponentModel;
 namespace WebApi.Controllers.EMT
 {
     [Description("运转卡管理")]
-    public class YZKController : EMTApiController
+    public partial class YZKController : EMTApiController
     {
         [Description("查询")]
         public object GetList([FromUri]dynamic query)
@@ -209,15 +209,17 @@ namespace WebApi.Controllers.EMT
                 var rgcr = GetRGCR(fgh);
 
                 SuccessResult result = new SuccessResult();
-                result.Data = new { xm = entrys, gy = gy, dxgy = dxgy, rsd = rsd,lld=lld,rgcr=rgcr   };
+                result.Data = new { xm = entrys, gy = gy, dxgy = dxgy, rsd = rsd, lld = lld, rgcr = rgcr };
                 return Json(result);
             }
             catch (Exception ex)
             {
-                return new FaildResult(ex.TargetSite + ":" + ex.InnerException.Message+"timeout:"+db.Database.Connection.ConnectionTimeout);
+                return new FaildResult(ex.TargetSite + ":" + ex.InnerException.Message + "timeout:" + db.Database.Connection.ConnectionTimeout);
             }
 
         }
+
+       
 
         private object GetXiMa(string fgh)
         {
@@ -387,7 +389,7 @@ namespace WebApi.Controllers.EMT
                         itemUnit = a.FName,//单位名称
                         itemQty = item.FQtyDecimal,//实发数量
                         deptName = b.FName,//部门名称
-                        itemDosage=detail.FDosage//用量
+                        itemDosage = detail.FDosage//用量
                     }
                     ).ToList();
         }
@@ -442,4 +444,6 @@ namespace WebApi.Controllers.EMT
         }
 
     }
+
+
 }

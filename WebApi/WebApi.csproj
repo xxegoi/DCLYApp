@@ -249,6 +249,7 @@
     <Compile Include="Controllers\EMT\ColorNoController.cs" />
     <Compile Include="Controllers\EMT\WorkFlowController.cs" />
     <Compile Include="Controllers\EMT\YZKController.cs" />
+    <Compile Include="Controllers\EMT\YzkPartitalController.cs" />
     <Compile Include="Models\DYModels\DYDB.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -390,6 +391,17 @@
     <Compile Include="Models\EMTModels\t_User.cs">
       <DependentUpon>EMT.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\EMTModels\v_DYJXC_CustomYZKTrack.cs">
+      <DependentUpon>EMT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EMTModels\v_DYJXC_YZKTrack.cs">
+      <DependentUpon>EMT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EMTModels\v_DYJXC_YZKTrack_Head.cs">
+      <DependentUpon>EMT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EMTModels\YzkTrackItem.cs" />
+    <Compile Include="Models\EMTModels\YzkTrackViewModel.cs" />
     <Compile Include="Models\EMTModels\YZKViewModel.cs" />
     <Compile Include="Models\PaginModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />

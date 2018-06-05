@@ -159,5 +159,6 @@ namespace WebApi.Models.EMTModels
         public decimal FDecimal { get; set; }
         public decimal FDecimal1 { get; set; }
         public string FPBName { get; set; }
+        public string FZHPZ { get; set; }
     }
 }
