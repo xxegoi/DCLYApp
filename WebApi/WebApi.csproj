@@ -247,6 +247,7 @@
     <Compile Include="Controllers\DY\TestDataController.cs" />
     <Compile Include="Controllers\DY\UserManageController.cs" />
     <Compile Include="Controllers\EMT\ColorNoController.cs" />
+    <Compile Include="Controllers\EMT\CustomerController.cs" />
     <Compile Include="Controllers\EMT\WorkFlowController.cs" />
     <Compile Include="Controllers\EMT\YZKController.cs" />
     <Compile Include="Controllers\EMT\YzkPartitalController.cs" />

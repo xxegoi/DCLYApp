@@ -94,7 +94,12 @@ namespace WebApi.Controllers.DY
             }
         }
 
-        
+        [HttpPost]
+        [Description("验证登录")]
+        public object ValidUser(JObject token)
+        {
+            return new SuccessResult();
+        }
        
     }
 }
