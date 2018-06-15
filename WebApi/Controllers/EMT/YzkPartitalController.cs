@@ -26,23 +26,25 @@ namespace WebApi.Controllers.EMT
             var result = from yzk in db.v_DYJXC_YZKTrack_Head
                          select yzk;
 
-            if (!string.IsNullOrEmpty( beginDate.ToString()))
+            if (beginDate!=null&&!string.IsNullOrEmpty( beginDate.ToString()))
             {
                 var date = DateTime.Parse(beginDate.ToString());
                 result = result.Where(p => p.FDate >= date);
             }
-            if (!string.IsNullOrEmpty(endDate.ToString()))
+            if (endDate!=null&&!string.IsNullOrEmpty(endDate.ToString()))
             {
                 var date = DateTime.Parse(endDate.ToString());
                 result = result.Where(p => p.FDate <=date);
             }
-            if (!string.IsNullOrEmpty(orgName.ToString()))
+            if (orgName!=null&&!string.IsNullOrEmpty(orgName.ToString()))
             {
-                result = result.Where(p => p.OrgName.Contains(orgName.ToString()));
+                string name = orgName.ToString();
+                result = result.Where(p => p.OrgName.Contains(name));
             }
-            if (!string.IsNullOrEmpty(fgh.ToString()))
+            if (fgh!=null&&!string.IsNullOrEmpty(fgh.ToString()))
             {
-                result = result.Where(p => p.FGH == fgh.ToString());
+                string gh = fgh.ToString();
+                result = result.Where(p => p.FGH ==gh);
             }
 
             var total = result.Count();

@@ -327,7 +327,7 @@ namespace WebApi.Controllers.EMT
             if (!string.IsNullOrEmpty(query.GetValue("cstCode").ToString()))
             {
                 var cstCode = query.GetValue("cstCode").ToString();
-                results = results.Where(p => p.organizationNumber == cstCode);
+                results = results.Where(p => p.customerName == cstCode);
             }
 
             if (!string.IsNullOrEmpty(query.GetValue("customerNo").ToString()))
