@@ -401,6 +401,12 @@
     <Compile Include="Models\EMTModels\v_DYJXC_YZKTrack_Head.cs">
       <DependentUpon>EMT.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\EMTModels\v_YzkWorkFlowCustomer_GXHB.cs">
+      <DependentUpon>EMT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EMTModels\v_YzkWorkFlow_GXHB.cs">
+      <DependentUpon>EMT.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\EMTModels\YzkTrackItem.cs" />
     <Compile Include="Models\EMTModels\YzkTrackViewModel.cs" />
     <Compile Include="Models\EMTModels\YZKViewModel.cs" />

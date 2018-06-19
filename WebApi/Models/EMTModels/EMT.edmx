@@ -1456,6 +1456,42 @@
           <Property Name="OrgName" Type="varchar" MaxLength="80" />
           <Property Name="FDeliveryDate" Type="datetime" />
         </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“EMT.dbo.v_YzkWorkFlow_GXHB”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="v_YzkWorkFlow_GXHB">
+          <Key>
+            <PropertyRef Name="FGH" />
+            <PropertyRef Name="FWorkProcedure" />
+            <PropertyRef Name="FIndex" />
+            <PropertyRef Name="FName" />
+            <PropertyRef Name="GXHB" />
+            <PropertyRef Name="FStatus" />
+          </Key>
+          <Property Name="FGH" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FWorkProcedure" Type="int" Nullable="false" />
+          <Property Name="FIndex" Type="int" Nullable="false" />
+          <Property Name="FName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="GXHB" Type="int" Nullable="false" />
+          <Property Name="FStatus" Type="varchar" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“EMT.dbo.v_YzkWorkFlowCustomer_GXHB”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="v_YzkWorkFlowCustomer_GXHB">
+          <Key>
+            <PropertyRef Name="FGH" />
+            <PropertyRef Name="FWorkProcedure" />
+            <PropertyRef Name="FIndex" />
+            <PropertyRef Name="FName" />
+            <PropertyRef Name="GXHB" />
+            <PropertyRef Name="FStatus" />
+          </Key>
+          <Property Name="FGH" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="FWorkProcedure" Type="int" Nullable="false" />
+          <Property Name="FIndex" Type="int" Nullable="false" />
+          <Property Name="FName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="GXHB" Type="int" Nullable="false" />
+          <Property Name="FStatus" Type="varchar" MaxLength="1" Nullable="false" />
+        </EntityType>
         <EntityContainer Name="EMTStoreContainer">
           <EntitySet Name="CustomWorkFlowEntrySet" EntityType="Self.CustomWorkFlowEntrySet" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CustomWorkFlowSet" EntityType="Self.CustomWorkFlowSet" Schema="dbo" store:Type="Tables" />
@@ -1876,6 +1912,26 @@
     [v_DYJXC_YZKTrack_Head].[FDeliveryDate] AS [FDeliveryDate]
     FROM [dbo].[v_DYJXC_YZKTrack_Head] AS [v_DYJXC_YZKTrack_Head]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="v_YzkWorkFlow_GXHB" EntityType="Self.v_YzkWorkFlow_GXHB" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_YzkWorkFlow_GXHB].[FGH] AS [FGH], 
+    [v_YzkWorkFlow_GXHB].[FWorkProcedure] AS [FWorkProcedure], 
+    [v_YzkWorkFlow_GXHB].[FIndex] AS [FIndex], 
+    [v_YzkWorkFlow_GXHB].[FName] AS [FName], 
+    [v_YzkWorkFlow_GXHB].[GXHB] AS [GXHB], 
+    [v_YzkWorkFlow_GXHB].[FStatus] AS [FStatus]
+    FROM [dbo].[v_YzkWorkFlow_GXHB] AS [v_YzkWorkFlow_GXHB]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="v_YzkWorkFlowCustomer_GXHB" EntityType="Self.v_YzkWorkFlowCustomer_GXHB" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_YzkWorkFlowCustomer_GXHB].[FGH] AS [FGH], 
+    [v_YzkWorkFlowCustomer_GXHB].[FWorkProcedure] AS [FWorkProcedure], 
+    [v_YzkWorkFlowCustomer_GXHB].[FIndex] AS [FIndex], 
+    [v_YzkWorkFlowCustomer_GXHB].[FName] AS [FName], 
+    [v_YzkWorkFlowCustomer_GXHB].[GXHB] AS [GXHB], 
+    [v_YzkWorkFlowCustomer_GXHB].[FStatus] AS [FStatus]
+    FROM [dbo].[v_YzkWorkFlowCustomer_GXHB] AS [v_YzkWorkFlowCustomer_GXHB]</DefiningQuery>
+          </EntitySet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -1921,6 +1977,8 @@
           <EntitySet Name="v_DYJXC_CustomYZKTrack" EntityType="EMT.v_DYJXC_CustomYZKTrack" />
           <EntitySet Name="v_DYJXC_YZKTrack" EntityType="EMT.v_DYJXC_YZKTrack" />
           <EntitySet Name="v_DYJXC_YZKTrack_Head" EntityType="EMT.v_DYJXC_YZKTrack_Head" />
+          <EntitySet Name="v_YzkWorkFlow_GXHB" EntityType="EMT.v_YzkWorkFlow_GXHB" />
+          <EntitySet Name="v_YzkWorkFlowCustomer_GXHB" EntityType="EMT.v_YzkWorkFlowCustomer_GXHB" />
         </EntityContainer>
         <EntityType Name="t_DY_YZK">
           <Key>
@@ -3343,6 +3401,38 @@
           <Property Name="OrgName" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
           <Property Name="FDeliveryDate" Type="DateTime" Precision="3" />
         </EntityType>
+        <EntityType Name="v_YzkWorkFlow_GXHB">
+          <Key>
+            <PropertyRef Name="FGH" />
+            <PropertyRef Name="FWorkProcedure" />
+            <PropertyRef Name="FIndex" />
+            <PropertyRef Name="FName" />
+            <PropertyRef Name="GXHB" />
+            <PropertyRef Name="FStatus" />
+          </Key>
+          <Property Name="FGH" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FWorkProcedure" Type="Int32" Nullable="false" />
+          <Property Name="FIndex" Type="Int32" Nullable="false" />
+          <Property Name="FName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="GXHB" Type="Int32" Nullable="false" />
+          <Property Name="FStatus" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="v_YzkWorkFlowCustomer_GXHB">
+          <Key>
+            <PropertyRef Name="FGH" />
+            <PropertyRef Name="FWorkProcedure" />
+            <PropertyRef Name="FIndex" />
+            <PropertyRef Name="FName" />
+            <PropertyRef Name="GXHB" />
+            <PropertyRef Name="FStatus" />
+          </Key>
+          <Property Name="FGH" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FWorkProcedure" Type="Int32" Nullable="false" />
+          <Property Name="FIndex" Type="Int32" Nullable="false" />
+          <Property Name="FName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="GXHB" Type="Int32" Nullable="false" />
+          <Property Name="FStatus" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -4730,6 +4820,30 @@
                 <ScalarProperty Name="FQty" ColumnName="FQty" />
                 <ScalarProperty Name="FName" ColumnName="FName" />
                 <ScalarProperty Name="FDate" ColumnName="FDate" />
+                <ScalarProperty Name="FGH" ColumnName="FGH" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_YzkWorkFlow_GXHB">
+            <EntityTypeMapping TypeName="EMT.v_YzkWorkFlow_GXHB">
+              <MappingFragment StoreEntitySet="v_YzkWorkFlow_GXHB">
+                <ScalarProperty Name="FStatus" ColumnName="FStatus" />
+                <ScalarProperty Name="GXHB" ColumnName="GXHB" />
+                <ScalarProperty Name="FName" ColumnName="FName" />
+                <ScalarProperty Name="FIndex" ColumnName="FIndex" />
+                <ScalarProperty Name="FWorkProcedure" ColumnName="FWorkProcedure" />
+                <ScalarProperty Name="FGH" ColumnName="FGH" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_YzkWorkFlowCustomer_GXHB">
+            <EntityTypeMapping TypeName="EMT.v_YzkWorkFlowCustomer_GXHB">
+              <MappingFragment StoreEntitySet="v_YzkWorkFlowCustomer_GXHB">
+                <ScalarProperty Name="FStatus" ColumnName="FStatus" />
+                <ScalarProperty Name="GXHB" ColumnName="GXHB" />
+                <ScalarProperty Name="FName" ColumnName="FName" />
+                <ScalarProperty Name="FIndex" ColumnName="FIndex" />
+                <ScalarProperty Name="FWorkProcedure" ColumnName="FWorkProcedure" />
                 <ScalarProperty Name="FGH" ColumnName="FGH" />
               </MappingFragment>
             </EntityTypeMapping>

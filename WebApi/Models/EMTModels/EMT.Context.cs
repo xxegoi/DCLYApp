@@ -64,5 +64,7 @@ namespace WebApi.Models.EMTModels
         public virtual DbSet<v_DYJXC_CustomYZKTrack> v_DYJXC_CustomYZKTrack { get; set; }
         public virtual DbSet<v_DYJXC_YZKTrack> v_DYJXC_YZKTrack { get; set; }
         public virtual DbSet<v_DYJXC_YZKTrack_Head> v_DYJXC_YZKTrack_Head { get; set; }
+        public virtual DbSet<v_YzkWorkFlow_GXHB> v_YzkWorkFlow_GXHB { get; set; }
+        public virtual DbSet<v_YzkWorkFlowCustomer_GXHB> v_YzkWorkFlowCustomer_GXHB { get; set; }
     }
 }
