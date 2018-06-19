@@ -45,7 +45,7 @@
         <EntityTypeShape EntityType="EMT.v_DYJXC_YZKTrack" Width="1.5" PointX="23.375" PointY="10.75" />
         <EntityTypeShape EntityType="EMT.v_DYJXC_YZKTrack_Head" Width="1.5" PointX="23.375" PointY="14.75" />
         <EntityTypeShape EntityType="EMT.v_YzkWorkFlow_GXHB" Width="1.5" PointX="25.375" PointY="0.75" />
-        <EntityTypeShape EntityType="EMT.v_YzkWorkFlowCustomer_GXHB" Width="1.5" PointX="25.375" PointY="3.75" />
+        <EntityTypeShape EntityType="EMT.v_YzkWorkFlowCustomer_GXHB" Width="1.5" PointX="25.375" PointY="4.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -1460,15 +1460,17 @@
 警告 6002: 表/视图“EMT.dbo.v_YzkWorkFlow_GXHB”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="v_YzkWorkFlow_GXHB">
           <Key>
+            <PropertyRef Name="FID" />
             <PropertyRef Name="FGH" />
-            <PropertyRef Name="FWorkProcedure" />
+            <PropertyRef Name="WPID" />
             <PropertyRef Name="FIndex" />
             <PropertyRef Name="FName" />
             <PropertyRef Name="GXHB" />
             <PropertyRef Name="FStatus" />
           </Key>
+          <Property Name="FID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FGH" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="FWorkProcedure" Type="int" Nullable="false" />
+          <Property Name="WPID" Type="int" Nullable="false" />
           <Property Name="FIndex" Type="int" Nullable="false" />
           <Property Name="FName" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="GXHB" Type="int" Nullable="false" />
@@ -1478,15 +1480,17 @@
 警告 6002: 表/视图“EMT.dbo.v_YzkWorkFlowCustomer_GXHB”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="v_YzkWorkFlowCustomer_GXHB">
           <Key>
+            <PropertyRef Name="FID" />
             <PropertyRef Name="FGH" />
-            <PropertyRef Name="FWorkProcedure" />
+            <PropertyRef Name="WPID" />
             <PropertyRef Name="FIndex" />
             <PropertyRef Name="FName" />
             <PropertyRef Name="GXHB" />
             <PropertyRef Name="FStatus" />
           </Key>
+          <Property Name="FID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FGH" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="FWorkProcedure" Type="int" Nullable="false" />
+          <Property Name="WPID" Type="int" Nullable="false" />
           <Property Name="FIndex" Type="int" Nullable="false" />
           <Property Name="FName" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="GXHB" Type="int" Nullable="false" />
@@ -1914,8 +1918,9 @@
           </EntitySet>
           <EntitySet Name="v_YzkWorkFlow_GXHB" EntityType="Self.v_YzkWorkFlow_GXHB" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
+    [v_YzkWorkFlow_GXHB].[FID] AS [FID], 
     [v_YzkWorkFlow_GXHB].[FGH] AS [FGH], 
-    [v_YzkWorkFlow_GXHB].[FWorkProcedure] AS [FWorkProcedure], 
+    [v_YzkWorkFlow_GXHB].[WPID] AS [WPID], 
     [v_YzkWorkFlow_GXHB].[FIndex] AS [FIndex], 
     [v_YzkWorkFlow_GXHB].[FName] AS [FName], 
     [v_YzkWorkFlow_GXHB].[GXHB] AS [GXHB], 
@@ -1924,8 +1929,9 @@
           </EntitySet>
           <EntitySet Name="v_YzkWorkFlowCustomer_GXHB" EntityType="Self.v_YzkWorkFlowCustomer_GXHB" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
+    [v_YzkWorkFlowCustomer_GXHB].[FID] AS [FID], 
     [v_YzkWorkFlowCustomer_GXHB].[FGH] AS [FGH], 
-    [v_YzkWorkFlowCustomer_GXHB].[FWorkProcedure] AS [FWorkProcedure], 
+    [v_YzkWorkFlowCustomer_GXHB].[WPID] AS [WPID], 
     [v_YzkWorkFlowCustomer_GXHB].[FIndex] AS [FIndex], 
     [v_YzkWorkFlowCustomer_GXHB].[FName] AS [FName], 
     [v_YzkWorkFlowCustomer_GXHB].[GXHB] AS [GXHB], 
@@ -3403,15 +3409,17 @@
         </EntityType>
         <EntityType Name="v_YzkWorkFlow_GXHB">
           <Key>
+            <PropertyRef Name="FID" />
             <PropertyRef Name="FGH" />
-            <PropertyRef Name="FWorkProcedure" />
+            <PropertyRef Name="WPID" />
             <PropertyRef Name="FIndex" />
             <PropertyRef Name="FName" />
             <PropertyRef Name="GXHB" />
             <PropertyRef Name="FStatus" />
           </Key>
+          <Property Name="FID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FGH" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="FWorkProcedure" Type="Int32" Nullable="false" />
+          <Property Name="WPID" Type="Int32" Nullable="false" />
           <Property Name="FIndex" Type="Int32" Nullable="false" />
           <Property Name="FName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="GXHB" Type="Int32" Nullable="false" />
@@ -3419,15 +3427,17 @@
         </EntityType>
         <EntityType Name="v_YzkWorkFlowCustomer_GXHB">
           <Key>
+            <PropertyRef Name="FID" />
             <PropertyRef Name="FGH" />
-            <PropertyRef Name="FWorkProcedure" />
+            <PropertyRef Name="WPID" />
             <PropertyRef Name="FIndex" />
             <PropertyRef Name="FName" />
             <PropertyRef Name="GXHB" />
             <PropertyRef Name="FStatus" />
           </Key>
+          <Property Name="FID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FGH" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="FWorkProcedure" Type="Int32" Nullable="false" />
+          <Property Name="WPID" Type="Int32" Nullable="false" />
           <Property Name="FIndex" Type="Int32" Nullable="false" />
           <Property Name="FName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="GXHB" Type="Int32" Nullable="false" />
@@ -4831,8 +4841,9 @@
                 <ScalarProperty Name="GXHB" ColumnName="GXHB" />
                 <ScalarProperty Name="FName" ColumnName="FName" />
                 <ScalarProperty Name="FIndex" ColumnName="FIndex" />
-                <ScalarProperty Name="FWorkProcedure" ColumnName="FWorkProcedure" />
+                <ScalarProperty Name="WPID" ColumnName="WPID" />
                 <ScalarProperty Name="FGH" ColumnName="FGH" />
+                <ScalarProperty Name="FID" ColumnName="FID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -4843,8 +4854,9 @@
                 <ScalarProperty Name="GXHB" ColumnName="GXHB" />
                 <ScalarProperty Name="FName" ColumnName="FName" />
                 <ScalarProperty Name="FIndex" ColumnName="FIndex" />
-                <ScalarProperty Name="FWorkProcedure" ColumnName="FWorkProcedure" />
+                <ScalarProperty Name="WPID" ColumnName="WPID" />
                 <ScalarProperty Name="FGH" ColumnName="FGH" />
+                <ScalarProperty Name="FID" ColumnName="FID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

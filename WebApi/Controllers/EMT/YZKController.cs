@@ -293,52 +293,60 @@ namespace WebApi.Controllers.EMT
             #endregion
             int page = string.IsNullOrEmpty(query.GetValue("page").ToString()) ? 1 : Convert.ToInt32(query.GetValue("page").ToString());
             int size = string.IsNullOrEmpty(query.GetValue("size").ToString()) ? 1 : Convert.ToInt32(query.GetValue("size").ToString());
+            var begin = query.GetValue("begindate");
+            var end = query.GetValue("enddate");
+            var bill = query.GetValue("billNo");
+            var order = query.GetValue("orderNo");
+            var gh = query.GetValue("fgh");
+            var cst = query.GetValue("cstCode");
+            var cstNo = query.GetValue("customerNo");
+            var fun = query.GetValue("fundNo");
 
-            if (!string.IsNullOrEmpty(query.GetValue("begindate").ToString()))
+            if (begin!=null&&!string.IsNullOrEmpty(begin.ToString()))
             {
-                var begindate = DateTime.Parse(query.GetValue("begindate").ToString()).Date;
+                var begindate = DateTime.Parse(begin.ToString()).Date;
                 results = results.Where(p => p.date >= begindate);
             }
 
-            if (!string.IsNullOrEmpty(query.GetValue("enddate").ToString()))
+            if (end!=null&&!string.IsNullOrEmpty(end.ToString()))
             {
-                var enddate = DateTime.Parse(query.GetValue("enddate").ToString()).Date;
+                var enddate = DateTime.Parse(end.ToString()).Date;
                 results = results.Where(p => p.date <= enddate);
             }
 
-            if (!string.IsNullOrEmpty(query.GetValue("billNo").ToString()))
+            if (bill!=null&&!string.IsNullOrEmpty(bill.ToString()))
             {
-                var billNo = query.GetValue("billNo").ToString();
+                var billNo = bill.ToString();
                 results = results.Where(p => p.billNo == billNo);
             }
 
-            if (!string.IsNullOrEmpty(query.GetValue("orderNo").ToString()))
+            if (order!=null&&!string.IsNullOrEmpty(order.ToString()))
             {
-                var orderNo = query.GetValue("orderNo").ToString();
+                var orderNo = order.ToString();
                 results = results.Where(p => p.orderNo == orderNo);
             }
 
-            if (!string.IsNullOrEmpty(query.GetValue("fgh").ToString()))
+            if (gh!=null&&!string.IsNullOrEmpty(gh.ToString()))
             {
-                var fgh = query.GetValue("fgh").ToString();
+                var fgh =gh.ToString();
                 results = results.Where(p => p.gh == fgh);
             }
 
-            if (!string.IsNullOrEmpty(query.GetValue("cstCode").ToString()))
+            if (cst!=null&&!string.IsNullOrEmpty(cst.ToString()))
             {
-                var cstCode = query.GetValue("cstCode").ToString();
+                var cstCode =cst.ToString();
                 results = results.Where(p => p.customerName == cstCode);
             }
 
-            if (!string.IsNullOrEmpty(query.GetValue("customerNo").ToString()))
+            if (cstNo!=null&&!string.IsNullOrEmpty(cstNo.ToString()))
             {
-                var customerNo = query.GetValue("customerNo").ToString();
+                var customerNo =cstNo.ToString();
                 results = results.Where(p => p.customerNo == customerNo);
             }
 
-            if (!string.IsNullOrEmpty(query.GetValue("fundNo").ToString()))
+            if (fun!=null&&!string.IsNullOrEmpty(fun.ToString()))
             {
-                var fundNo = query.GetValue("fundNo").ToString();
+                var fundNo = fun.ToString();
                 results = results.Where(p => p.fundNo == fundNo);
             }
 

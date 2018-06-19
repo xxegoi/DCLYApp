@@ -9,6 +9,7 @@ using WebApi.Models.DYModels;
 using Newtonsoft.Json.Linq;
 using WebApi.Models.EMTModels;
 using System.ComponentModel;
+using WebApi.OutputCache.V2;
 
 namespace WebApi.Controllers.EMT
 {
@@ -18,6 +19,7 @@ namespace WebApi.Controllers.EMT
         DYContainer dydb = new DYContainer();
 
         [Description("查询")]
+        [CacheOutput(ClientTimeSpan = 60, ServerTimeSpan = 60)]
         public object GetWorkFlow([FromUri]string fgh)
         {
             if (fgh != null)
@@ -72,9 +74,10 @@ namespace WebApi.Controllers.EMT
             return new FaildResult("");
         }
 
-        
+
         [Description("查询2")]
         [HttpPost]
+        [CacheOutput(ClientTimeSpan = 60, ServerTimeSpan = 60)]
         public object GetWorkFlow(JObject obj)
         {
             var fgh = obj.GetValue("fgh");
@@ -88,14 +91,14 @@ namespace WebApi.Controllers.EMT
 
                 if (db.v_YzkWorkFlowCustomer_GXHB.Count(p => p.FGH == gh) > 0)
                 {
-                    var result = db.v_YzkWorkFlowCustomer_GXHB.Where(p => p.FGH == gh).OrderBy(p=>p.FIndex).ToList();
+                    var result = db.v_YzkWorkFlowCustomer_GXHB.Where(p => p.FGH == gh).OrderBy(p => p.FIndex).ToList();
 
-                    
 
-                    for(int i = 0; i < result.Count; i++)
+
+                    for (int i = 0; i < result.Count; i++)
                     {
                         if (result[i].GXHB == 1)
-                            activeIndex = i+1;
+                            activeIndex = i + 1;
                     }
 
                     return Json(new SuccessResult()
@@ -110,12 +113,12 @@ namespace WebApi.Controllers.EMT
                     for (int i = 0; i < result.Count; i++)
                     {
                         if (result[i].GXHB == 1)
-                            activeIndex = i+1;
+                            activeIndex = i + 1;
                     }
 
                     return Json(new SuccessResult()
                     {
-                        Data = new { fgh = fgh,workflow = result,activeIndex=activeIndex, wps = wps }
+                        Data = new { fgh = fgh, workflow = result, activeIndex = activeIndex, wps = wps }
                     });
                 }
 
@@ -133,63 +136,59 @@ namespace WebApi.Controllers.EMT
                 if (obj["workflow"] != null)
                 {
                     CustomWorkFlowSet workflowModel;
-                    try
+
+                    var fgh = obj["fgh"].ToString();
+                    //如果自定义工艺流程未有创建则新建并保存到数据库
+                    if (db.CustomWorkFlowSet.Count(p => p.FGH == fgh) != 1)
                     {
-                        var fgh = obj["fgh"].ToString();
-                        //如果自定义工艺流程未有创建则新建并保存到数据库
-                        if (db.CustomWorkFlowSet.Count(p => p.FGH == fgh) != 1)
-                        {
-                            workflowModel = new CustomWorkFlowSet() { FGH = obj["fgh"].ToString(), CreateTime = DateTime.Now, Creator = "admin" };
-                            db.CustomWorkFlowSet.Add(workflowModel);
-                            db.SaveChanges();
-                        }
-
-                        workflowModel = db.CustomWorkFlowSet.Single(p => p.FGH == fgh);
-
-
-                        //删除未有工序汇报的自定义工艺流程节点
-                        var canModifyIndex = (int)obj["canModifyIndex"];
-                        var entryList = db.CustomWorkFlowEntrySet.Where(p => p.PFID == workflowModel.Id).ToList();
-                        if (entryList.Count > 0)
-                        {
-                            for (int i = canModifyIndex > 0 ? canModifyIndex : 0; i < entryList.Count; i++)
-                            {
-                                var p = entryList[i];
-                                var entry = db.Entry<CustomWorkFlowEntrySet>(p);
-                                entry.State = System.Data.Entity.EntityState.Deleted;
-                            }
-                        }
-
-
-                        //重新插入修改后的自定义工艺流程节点
-                        var workflow = obj["workflow"];
-                        for (int i = 0; i < workflow.Count(); i++)
-                        {
-                            CustomWorkFlowEntrySet entry;
-                            var fid = workflow[i]["FID"] == null ? -1 : (int)workflow[i]["FID"];
-
-                            if (i >= canModifyIndex || entryList.Count(p => p.Id == fid) == 0)
-                            {
-                                entry = new CustomWorkFlowEntrySet()
-                                {
-                                    //节点顺序等于节点所在数组索引
-                                    Index = i + 1,
-                                    PFID = workflowModel.Id,
-                                    FWorkProcedure = (int)workflow[i]["WPID"],
-                                    IsDeleted = false
-                                };
-                                db.CustomWorkFlowEntrySet.Add(entry);
-                            }
-
-
-                        }
+                        workflowModel = new CustomWorkFlowSet() { FGH = obj["fgh"].ToString(), CreateTime = DateTime.Now, Creator = "admin" };
+                        db.CustomWorkFlowSet.Add(workflowModel);
                         db.SaveChanges();
-                        return new SuccessResult();
                     }
-                    catch (Exception ex)
+
+                    workflowModel = db.CustomWorkFlowSet.Single(p => p.FGH == fgh);
+
+
+                    //删除未有工序汇报的自定义工艺流程节点
+                    var canModifyIndex = (int)obj["canModifyIndex"];
+                    var entryList = db.CustomWorkFlowEntrySet.Where(p => p.PFID == workflowModel.Id).ToList();
+                    if (entryList.Count > 0)
                     {
-                        return new FaildResult("500，服务端错误: \r\n" + ex.Message);
+                        for (int i = canModifyIndex > 0 ? canModifyIndex : 0; i < entryList.Count; i++)
+                        {
+                            var p = entryList[i];
+                            var entry = db.Entry<CustomWorkFlowEntrySet>(p);
+                            entry.State = System.Data.Entity.EntityState.Deleted;
+                        }
                     }
+
+
+                    //重新插入修改后的自定义工艺流程节点
+                    var workflow = obj["workflow"];
+                    for (int i = 0; i < workflow.Count(); i++)
+                    {
+                        CustomWorkFlowEntrySet entry;
+                        var fid = workflow[i]["FID"] == null ? -1 : (int)workflow[i]["FID"];
+
+                        if (i >= canModifyIndex || entryList.Count(p => p.Id == fid) == 0)
+                        {
+                            entry = new CustomWorkFlowEntrySet()
+                            {
+                                //节点顺序等于节点所在数组索引
+                                Index = i + 1,
+                                PFID = workflowModel.Id,
+                                FWorkProcedure = (int)workflow[i]["WPID"],
+                                IsDeleted = false
+                            };
+                            db.CustomWorkFlowEntrySet.Add(entry);
+                        }
+
+
+                    }
+                    db.SaveChanges();
+                    return new SuccessResult();
+
+
                 }
             }
 

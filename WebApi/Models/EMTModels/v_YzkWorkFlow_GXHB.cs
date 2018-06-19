@@ -14,8 +14,9 @@ namespace WebApi.Models.EMTModels
     
     public partial class v_YzkWorkFlow_GXHB
     {
+        public int FID { get; set; }
         public string FGH { get; set; }
-        public int FWorkProcedure { get; set; }
+        public int WPID { get; set; }
         public int FIndex { get; set; }
         public string FName { get; set; }
         public int GXHB { get; set; }
