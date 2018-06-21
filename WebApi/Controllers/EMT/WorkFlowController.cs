@@ -147,14 +147,13 @@ namespace WebApi.Controllers.EMT
                     }
 
                     workflowModel = db.CustomWorkFlowSet.Single(p => p.FGH == fgh);
-
-
-                    //删除未有工序汇报的自定义工艺流程节点
                     var canModifyIndex = (int)obj["canModifyIndex"];
                     var entryList = db.CustomWorkFlowEntrySet.Where(p => p.PFID == workflowModel.Id).ToList();
+
+                    //删除自定义工艺流程节点
                     if (entryList.Count > 0)
                     {
-                        for (int i = canModifyIndex > 0 ? canModifyIndex : 0; i < entryList.Count; i++)
+                        for (int i = 0; i < entryList.Count; i++)
                         {
                             var p = entryList[i];
                             var entry = db.Entry<CustomWorkFlowEntrySet>(p);
@@ -163,26 +162,23 @@ namespace WebApi.Controllers.EMT
                     }
 
 
-                    //重新插入修改后的自定义工艺流程节点
+                    //插入修改后的自定义工艺流程节点
                     var workflow = obj["workflow"];
                     for (int i = 0; i < workflow.Count(); i++)
                     {
                         CustomWorkFlowEntrySet entry;
                         var fid = workflow[i]["FID"] == null ? -1 : (int)workflow[i]["FID"];
+                        var index = workflow[i]["FIndex"] == null ? -1 : Convert.ToInt32(workflow[i]["FIndex"]);
 
-                        if (i >= canModifyIndex || entryList.Count(p => p.Id == fid) == 0)
+                        entry = new CustomWorkFlowEntrySet()
                         {
-                            entry = new CustomWorkFlowEntrySet()
-                            {
-                                //节点顺序等于节点所在数组索引
-                                Index = i + 1,
-                                PFID = workflowModel.Id,
-                                FWorkProcedure = (int)workflow[i]["WPID"],
-                                IsDeleted = false
-                            };
-                            db.CustomWorkFlowEntrySet.Add(entry);
-                        }
+                            Index = i + 1,
+                            PFID = workflowModel.Id,
+                            FWorkProcedure = (int)workflow[i]["WPID"],
+                            IsDeleted = false
+                        };
 
+                        db.CustomWorkFlowEntrySet.Add(entry);
 
                     }
                     db.SaveChanges();
