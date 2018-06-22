@@ -8,6 +8,7 @@ using System.Web.Http;
 using WebApi.Common;
 using WebApi.Models.EMTModels;
 using WebApi.OutputCache.V2;
+using System.Data.SqlClient;
 
 namespace WebApi.Controllers.EMT
 {
@@ -77,7 +78,9 @@ namespace WebApi.Controllers.EMT
             List<YzkTrackItem> items = new List<YzkTrackItem>();
             if (db.v_DYJXC_CustomYZKTrack.Count(p => p.FGH == fgh) == 0)
             {
-                var result = db.v_DYJXC_YZKTrack.Where(p => p.FGH == fgh).AsParallel().ToList();
+                string sql = @"SELECT * FROM dbo.v_DYJXC_YZKTrack WHERE FGH=@fgh";
+                SqlParameter[] pars = new SqlParameter[] { new SqlParameter("@fgh", fgh) };
+                var result = db.Database.SqlQuery<v_DYJXC_YZKTrack>(sql, pars).AsParallel().ToList();
 
                 YzkTrackItem item = null;
 
@@ -106,7 +109,13 @@ namespace WebApi.Controllers.EMT
             }
             else
             {
-                var result = db.v_DYJXC_CustomYZKTrack.Where(p => p.FGH == fgh).ToList();
+
+                string sql = @"SELECT * FROM dbo.v_DYJXC_CustomYZKTrack WHERE FGH=@fgh";
+                SqlParameter[] pars =new SqlParameter[] { new SqlParameter("@fgh", fgh) };
+
+                var result = db.Database.SqlQuery<v_DYJXC_CustomYZKTrack>(sql, pars).AsParallel().ToList();
+
+                
 
                 YzkTrackItem item = null;
 
@@ -116,7 +125,9 @@ namespace WebApi.Controllers.EMT
                     {
                         if(item!=null)
                             items.Add(item);
-                        item = new YzkTrackItem() { FName = p.FName, FIndex = p.FIndex, FWorkProcedure = p.FWorkProcedure };
+                        item = new YzkTrackItem() { FName = p.FName,
+                            FIndex = p.FIndex,
+                            FWorkProcedure = p.FWorkProcedure };
                     }
 
                     if (p.FOperType == "S")
@@ -128,6 +139,7 @@ namespace WebApi.Controllers.EMT
                         item.JieTime = p.FRecDate.Value;
                     }
                 });
+                if (item != null) { items.Add(item); }
             }
             return items.OrderBy(p=>p.FIndex).ToList();
         }

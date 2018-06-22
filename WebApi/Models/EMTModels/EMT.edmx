@@ -1411,11 +1411,9 @@
 警告 6002: 表/视图“EMT.dbo.v_DYJXC_CustomYZKTrack”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="v_DYJXC_CustomYZKTrack">
           <Key>
-            <PropertyRef Name="FGH" />
-            <PropertyRef Name="FWorkProcedure" />
-            <PropertyRef Name="FIndex" />
-            <PropertyRef Name="FName" />
+            <PropertyRef Name="FID" />
           </Key>
+          <Property Name="FID" Type="int" Nullable="false" />
           <Property Name="FGH" Type="nvarchar(max)" Nullable="false" />
           <Property Name="FWorkProcedure" Type="int" Nullable="false" />
           <Property Name="FIndex" Type="int" Nullable="false" />
@@ -1428,11 +1426,9 @@
 警告 6002: 表/视图“EMT.dbo.v_DYJXC_YZKTrack”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="v_DYJXC_YZKTrack">
           <Key>
-            <PropertyRef Name="FGH" />
-            <PropertyRef Name="FWorkProcedure" />
-            <PropertyRef Name="FIndex" />
-            <PropertyRef Name="FName" />
+            <PropertyRef Name="FID" />
           </Key>
+          <Property Name="FID" Type="int" Nullable="false" />
           <Property Name="FGH" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="FWorkProcedure" Type="int" Nullable="false" />
           <Property Name="FIndex" Type="int" Nullable="false" />
@@ -1886,6 +1882,7 @@
           </EntitySet>
           <EntitySet Name="v_DYJXC_CustomYZKTrack" EntityType="Self.v_DYJXC_CustomYZKTrack" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
+    [v_DYJXC_CustomYZKTrack].[FID] AS [FID], 
     [v_DYJXC_CustomYZKTrack].[FGH] AS [FGH], 
     [v_DYJXC_CustomYZKTrack].[FWorkProcedure] AS [FWorkProcedure], 
     [v_DYJXC_CustomYZKTrack].[FIndex] AS [FIndex], 
@@ -1897,6 +1894,7 @@
           </EntitySet>
           <EntitySet Name="v_DYJXC_YZKTrack" EntityType="Self.v_DYJXC_YZKTrack" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
+    [v_DYJXC_YZKTrack].[FID] AS [FID], 
     [v_DYJXC_YZKTrack].[FGH] AS [FGH], 
     [v_DYJXC_YZKTrack].[FWorkProcedure] AS [FWorkProcedure], 
     [v_DYJXC_YZKTrack].[FIndex] AS [FIndex], 
@@ -3366,10 +3364,7 @@
         </EntityType>
         <EntityType Name="v_DYJXC_CustomYZKTrack">
           <Key>
-            <PropertyRef Name="FGH" />
-            <PropertyRef Name="FWorkProcedure" />
-            <PropertyRef Name="FIndex" />
-            <PropertyRef Name="FName" />
+            <PropertyRef Name="FID" />
           </Key>
           <Property Name="FGH" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="FWorkProcedure" Type="Int32" Nullable="false" />
@@ -3378,13 +3373,11 @@
           <Property Name="FNum" Type="Decimal" Precision="16" Scale="6" />
           <Property Name="FRecDate" Type="DateTime" Precision="3" />
           <Property Name="FOperType" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="FID" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="v_DYJXC_YZKTrack">
           <Key>
-            <PropertyRef Name="FGH" />
-            <PropertyRef Name="FWorkProcedure" />
-            <PropertyRef Name="FIndex" />
-            <PropertyRef Name="FName" />
+            <PropertyRef Name="FID" />
           </Key>
           <Property Name="FGH" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="FWorkProcedure" Type="Int32" Nullable="false" />
@@ -3393,6 +3386,7 @@
           <Property Name="FNum" Type="Decimal" Precision="16" Scale="6" />
           <Property Name="FRecDate" Type="DateTime" Precision="3" />
           <Property Name="FOperType" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="FID" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="v_DYJXC_YZKTrack_Head">
           <Key>
@@ -4799,6 +4793,7 @@
           <EntitySetMapping Name="v_DYJXC_CustomYZKTrack">
             <EntityTypeMapping TypeName="EMT.v_DYJXC_CustomYZKTrack">
               <MappingFragment StoreEntitySet="v_DYJXC_CustomYZKTrack">
+                <ScalarProperty Name="FID" ColumnName="FID" />
                 <ScalarProperty Name="FOperType" ColumnName="FOperType" />
                 <ScalarProperty Name="FRecDate" ColumnName="FRecDate" />
                 <ScalarProperty Name="FNum" ColumnName="FNum" />
@@ -4812,6 +4807,7 @@
           <EntitySetMapping Name="v_DYJXC_YZKTrack">
             <EntityTypeMapping TypeName="EMT.v_DYJXC_YZKTrack">
               <MappingFragment StoreEntitySet="v_DYJXC_YZKTrack">
+                <ScalarProperty Name="FID" ColumnName="FID" />
                 <ScalarProperty Name="FOperType" ColumnName="FOperType" />
                 <ScalarProperty Name="FRecDate" ColumnName="FRecDate" />
                 <ScalarProperty Name="FNum" ColumnName="FNum" />

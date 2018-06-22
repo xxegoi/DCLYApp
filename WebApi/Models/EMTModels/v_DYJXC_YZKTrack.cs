@@ -21,5 +21,6 @@ namespace WebApi.Models.EMTModels
         public Nullable<decimal> FNum { get; set; }
         public Nullable<System.DateTime> FRecDate { get; set; }
         public string FOperType { get; set; }
+        public int FID { get; set; }
     }
 }

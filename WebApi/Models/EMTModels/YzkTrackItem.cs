@@ -34,13 +34,13 @@ namespace WebApi.Models.EMTModels
                 {
                     return "wait";
                 }
-                else if (this.JieTime != null && this.SendTime == null)
-                {
-                    return "process";
-                }
-                else
+                else if(this.SendTime!=null)
                 {
                     return "success";
+                }
+                else 
+                {
+                    return "process";
                 }
             }
         }
