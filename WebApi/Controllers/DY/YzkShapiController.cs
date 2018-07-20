@@ -12,7 +12,7 @@ using WebApi.Models.DYModels;
 
 namespace WebApi.Controllers.DY
 {
-    public class YzkShapi : DYApiController
+    public class YzkShapiController : DYApiController
     {
         [HttpPost]
         [Description("测试")]
