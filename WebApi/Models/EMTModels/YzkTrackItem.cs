@@ -12,6 +12,7 @@ namespace WebApi.Models.EMTModels
         public DateTime? SendTime { get; set; }
         public DateTime? JieTime { get; set; }
         public int FWorkProcedure { get; set; }
+        public decimal? FNum { get; set; }
 
         string state;
 

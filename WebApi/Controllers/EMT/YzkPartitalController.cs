@@ -90,16 +90,16 @@ namespace WebApi.Controllers.EMT
                     {
                         if (item != null) { items.Add(item); }
 
-                        item = new YzkTrackItem() { FName = p.FName, FIndex = p.FIndex, FWorkProcedure = p.FWorkProcedure };
+                        item = new YzkTrackItem() { FName = p.FName, FIndex = p.FIndex, FWorkProcedure = p.FWorkProcedure,FNum=p.FNum };
                     }
 
                     if (p.FOperType == "S")
                     {
-                        item.SendTime = p.FRecDate.Value.Date;
+                        item.SendTime = p.FRecDate.Value;
                     }
                     else if (p.FOperType == "J")
                     {
-                        item.JieTime = p.FRecDate.Value.Date;
+                        item.JieTime = p.FRecDate.Value;
                     }
                 });
                 if (item != null)
