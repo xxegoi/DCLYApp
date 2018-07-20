@@ -5,7 +5,7 @@ using System.Web;
 
 namespace WebApi.Models.DYModels
 {
-    public class Test123Model
+    public class YzkShapiViewModel
     {
         public string fgh { get; set; }
 

@@ -12,7 +12,7 @@ using WebApi.Models.DYModels;
 
 namespace WebApi.Controllers.DY
 {
-    public class Test123Controller : DYApiController
+    public class YzkShapi : DYApiController
     {
         [HttpPost]
         [Description("测试")]
@@ -35,7 +35,7 @@ namespace WebApi.Controllers.DY
             parameters.Add(new SqlParameter("@gh", fgh));
 
             //var data = db.Database.SqlQuery<Test123Model>(sql, parameters.ToArray()).OrderBy(p => p.fgh).Skip((page - 1) * size).Take(size).ToList();
-            var data = db.Database.SqlQuery<Test123Model>(sql, parameters.ToArray()).OrderBy(p => p.fgh).ToList();
+            var data = db.Database.SqlQuery<YzkShapiViewModel>(sql, parameters.ToArray()).OrderBy(p => p.fgh).ToList();
 
             return new SuccessResult() { Data = new { list = data } };
         }
