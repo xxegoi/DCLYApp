@@ -16,7 +16,6 @@ namespace WebApi.Controllers.DY
     {
         [HttpGet]
         [Description("刷新API")]
-        [AllowAnonymous]
         public object UpdateApi()
         {
             try

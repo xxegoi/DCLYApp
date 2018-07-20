@@ -12,10 +12,11 @@ using WebApi.Models.DYModels;
 
 namespace WebApi.Controllers.DY
 {
+    [Description("运转卡纱胚")]
     public class YzkShapiController : DYApiController
     {
         [HttpPost]
-        [Description("测试")]
+        [Description("查询")]
         public object Query(JObject obj)
         {
             //int page = int.Parse(obj.GetValue("page").ToString());
