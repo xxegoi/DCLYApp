@@ -28,5 +28,6 @@ namespace WebApi.Models.DYModels
         public Nullable<int> no_of_roll { get; set; }
         public string production_desc { get; set; }
         public bool IsSync { get; set; }
+        public Nullable<System.DateTime> FDate { get; set; }
     }
 }

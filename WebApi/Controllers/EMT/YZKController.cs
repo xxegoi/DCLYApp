@@ -16,174 +16,174 @@ namespace WebApi.Controllers.EMT
     [Description("运转卡管理")]
     public partial class YZKController : EMTApiController
     {
-        [Description("查询")]
-        public object GetList([FromUri]dynamic query)
-        {
-            try
-            {
-                #region Linq查询
-                var results = (from yzk in db.t_DY_YZK
-                               join user in db.t_User on yzk.FBiller equals user.FUserID into g1
-                               from a in g1.DefaultIfEmpty()
-                               join user1 in db.t_User on yzk.FChecker equals user1.FUserID into g2
-                               from b in g2.DefaultIfEmpty()
-                               join item in db.t_ICItem on yzk.FItemid equals item.FItemID into g3
-                               from c in g3.DefaultIfEmpty()
-                               join bos123 in db.t_BOS200000123Entry2 on yzk.FAmountType equals bos123.FID into g4
-                               from d in g4.DefaultIfEmpty()
-                               join org in db.t_Organization on yzk.FOrganization equals org.FItemID into g5
-                               from e in g5.DefaultIfEmpty()
-                               join bos121 in db.t_BOS200000121Entry2 on yzk.FBase1 equals bos121.FID into g6
-                               from f in g6.DefaultIfEmpty()
-                               join bos124 in db.t_BOS200000124Entry2 on yzk.FBase equals bos124.FID into g7
-                               from g in g7.DefaultIfEmpty()
-                               join submessage in db.t_SubMessage on yzk.FBrandInfo equals submessage.FInterID into g8
-                               from h in g8.DefaultIfEmpty()
-                               join amountType in db.t_DY_AmountType on yzk.FAmountType equals amountType.FID into g9
-                               from i in g9.DefaultIfEmpty()
-                               where yzk.FBiller != 0
-                               select new
-                               {
-                                   fid = yzk.FID,
-                                   ppsx = h.FName,//品牌属性
-                                   sflx = i.FName,//收费类型
-                                   gh = yzk.FGH,//缸号
-                                   billNo = yzk.FBillNo,//单据编号
-                                   biller = a.FName,//制单人
-                                   date = yzk.FDate,//单据日期
-                                   orderNo = yzk.FOrderNo,//订单号
-                                   customerName = e.FName,//客户名称
-                                   organizationNumber = e.FNumber,
-                                   customerNo = yzk.FCustomerNo,//客户单号
-                                   fundNo = yzk.FFundNo,//款号
-                                   qty = yzk.FQty,//开单匹数
-                                   weight = yzk.FWeight,//重量
-                                   pbNote = yzk.FPBNote,//配布备注
-                                   checker = b.FName,//审核人
-                                   itemNo = c.FNumber,//布类编码
-                                   itemName = c.FName,//布类名称
-                                   itemModel = c.FModel,//规格型号
-                                   sumPZ = yzk.FSumPZ,//原缸总坯重
-                                   note = yzk.FNOTE,//备注
-                                   closed = yzk.FClosed,
-                                   noteForCP = yzk.FNoteForCP,//备注(成长打印)
-                                   deliveryDate = yzk.FDeliveryDate,//交货日期
-                                   ddNote = yzk.FDDBZ,//订单备注
-                                   workFlow = yzk.FWorkFlow,//工艺流程
-                                   fdd = yzk.FDD,//对色光源
-                                   fsd = yzk.FSD,//色对
-                                   fsl = yzk.FSL,//牢度要求
-                                   fsg = yzk.FSG,//手感要求
-                                   dxfk = yzk.FDXFK,//成品要求
-                                   fkz = yzk.fkz,//成品克重
-                                   fjb = yzk.FJB,//浆边
-                                   fqb = yzk.FQB,//切边
-                                   fjsz = yzk.FJSZ,//加树脂
-                                   fjry = yzk.FJRY,//加软油
-                                   facross = yzk.FAcross,//横
-                                   fstraight = yzk.FStraight,//直
-                                   ftweak = yzk.FTweak,//扭度
-                                   fzt = yzk.FZT,//纸筒
-                                   fjz = yzk.fjz,//加重
-                                   fjd = yzk.FJD,//胶带
-                                   addr = yzk.FAddress//收货地址
-                               });
-                int page = 1;
-                int size = 10;
+        //[Description("查询")]
+        //public object GetList([FromUri]dynamic query)
+        //{
+        //    try
+        //    {
+        //        #region Linq查询
+        //        var results = (from yzk in db.t_DY_YZK
+        //                       join user in db.t_User on yzk.FBiller equals user.FUserID into g1
+        //                       from a in g1.DefaultIfEmpty()
+        //                       join user1 in db.t_User on yzk.FChecker equals user1.FUserID into g2
+        //                       from b in g2.DefaultIfEmpty()
+        //                       join item in db.t_ICItem on yzk.FItemid equals item.FItemID into g3
+        //                       from c in g3.DefaultIfEmpty()
+        //                       join bos123 in db.t_BOS200000123Entry2 on yzk.FAmountType equals bos123.FID into g4
+        //                       from d in g4.DefaultIfEmpty()
+        //                       join org in db.t_Organization on yzk.FOrganization equals org.FItemID into g5
+        //                       from e in g5.DefaultIfEmpty()
+        //                       join bos121 in db.t_BOS200000121Entry2 on yzk.FBase1 equals bos121.FID into g6
+        //                       from f in g6.DefaultIfEmpty()
+        //                       join bos124 in db.t_BOS200000124Entry2 on yzk.FBase equals bos124.FID into g7
+        //                       from g in g7.DefaultIfEmpty()
+        //                       join submessage in db.t_SubMessage on yzk.FBrandInfo equals submessage.FInterID into g8
+        //                       from h in g8.DefaultIfEmpty()
+        //                       join amountType in db.t_DY_AmountType on yzk.FAmountType equals amountType.FID into g9
+        //                       from i in g9.DefaultIfEmpty()
+        //                       where yzk.FBiller != 0
+        //                       select new
+        //                       {
+        //                           fid = yzk.FID,
+        //                           ppsx = h.FName,//品牌属性
+        //                           sflx = i.FName,//收费类型
+        //                           gh = yzk.FGH,//缸号
+        //                           billNo = yzk.FBillNo,//单据编号
+        //                           biller = a.FName,//制单人
+        //                           date = yzk.FDate,//单据日期
+        //                           orderNo = yzk.FOrderNo,//订单号
+        //                           customerName = e.FName,//客户名称
+        //                           organizationNumber = e.FNumber,
+        //                           customerNo = yzk.FCustomerNo,//客户单号
+        //                           fundNo = yzk.FFundNo,//款号
+        //                           qty = yzk.FQty,//开单匹数
+        //                           weight = yzk.FWeight,//重量
+        //                           pbNote = yzk.FPBNote,//配布备注
+        //                           checker = b.FName,//审核人
+        //                           itemNo = c.FNumber,//布类编码
+        //                           itemName = c.FName,//布类名称
+        //                           itemModel = c.FModel,//规格型号
+        //                           sumPZ = yzk.FSumPZ,//原缸总坯重
+        //                           note = yzk.FNOTE,//备注
+        //                           closed = yzk.FClosed,
+        //                           noteForCP = yzk.FNoteForCP,//备注(成长打印)
+        //                           deliveryDate = yzk.FDeliveryDate,//交货日期
+        //                           ddNote = yzk.FDDBZ,//订单备注
+        //                           workFlow = yzk.FWorkFlow,//工艺流程
+        //                           fdd = yzk.FDD,//对色光源
+        //                           fsd = yzk.FSD,//色对
+        //                           fsl = yzk.FSL,//牢度要求
+        //                           fsg = yzk.FSG,//手感要求
+        //                           dxfk = yzk.FDXFK,//成品要求
+        //                           fkz = yzk.fkz,//成品克重
+        //                           fjb = yzk.FJB,//浆边
+        //                           fqb = yzk.FQB,//切边
+        //                           fjsz = yzk.FJSZ,//加树脂
+        //                           fjry = yzk.FJRY,//加软油
+        //                           facross = yzk.FAcross,//横
+        //                           fstraight = yzk.FStraight,//直
+        //                           ftweak = yzk.FTweak,//扭度
+        //                           fzt = yzk.FZT,//纸筒
+        //                           fjz = yzk.fjz,//加重
+        //                           fjd = yzk.FJD,//胶带
+        //                           addr = yzk.FAddress//收货地址
+        //                       });
+        //        int page = 1;
+        //        int size = 10;
 
 
 
-                //过滤条件
-                if (query != null)
-                {
-                    JObject queryJson = JsonConvert.DeserializeObject(query);
-                    if (queryJson["daterange"] != null && queryJson["daterange"].Count() > 0)
-                    {
-                        DateTime startDate;//开始日期
-                        DateTime endDate;//结束日期
+        //        //过滤条件
+        //        if (query != null)
+        //        {
+        //            JObject queryJson = JsonConvert.DeserializeObject(query);
+        //            if (queryJson["daterange"] != null && queryJson["daterange"].Count() > 0)
+        //            {
+        //                DateTime startDate;//开始日期
+        //                DateTime endDate;//结束日期
 
-                        if (DateTime.TryParse(queryJson["daterange"][0].ToString(), out startDate) && DateTime.TryParse(queryJson["daterange"][1].ToString(), out endDate))
-                        {
-                            results = results.Where(p => p.date >= startDate.Date && p.date <= endDate.Date);
-                        }
-                        else if (DateTime.TryParse(queryJson["daterange"][0].ToString(), out startDate))
-                        {
-                            results = results.Where(p => p.date >= startDate.Date);
-                        }
-                        else if (DateTime.TryParse(queryJson["daterange"][1].ToString(), out endDate))
-                        {
-                            results = results.Where(p => p.date <= endDate.Date);
-                        }
+        //                if (DateTime.TryParse(queryJson["daterange"][0].ToString(), out startDate) && DateTime.TryParse(queryJson["daterange"][1].ToString(), out endDate))
+        //                {
+        //                    results = results.Where(p => p.date >= startDate.Date && p.date <= endDate.Date);
+        //                }
+        //                else if (DateTime.TryParse(queryJson["daterange"][0].ToString(), out startDate))
+        //                {
+        //                    results = results.Where(p => p.date >= startDate.Date);
+        //                }
+        //                else if (DateTime.TryParse(queryJson["daterange"][1].ToString(), out endDate))
+        //                {
+        //                    results = results.Where(p => p.date <= endDate.Date);
+        //                }
 
-                    }
-                    if (queryJson["billNo"] != null)
-                    {
-                        var billno = queryJson["billNo"].ToString();//单据编号
-                        if (!string.IsNullOrEmpty(billno))
-                            results = results.Where(p => p.billNo.Contains(billno));
-                    }
-                    if (queryJson["fgh"] != null)
-                    {
-                        var fgh = queryJson["fgh"].ToString();//缸号
-                        if (!string.IsNullOrEmpty(fgh))
-                            results = results.Where(p => p.gh.Contains(fgh));
-                    }
-                    if (queryJson["orderNo"] != null)
-                    {
-                        var orderNo = queryJson["orderNo"].ToString();//订单号
-                        if (!string.IsNullOrEmpty(orderNo))
-                            results = results.Where(p => p.orderNo.Contains(orderNo));
-                    }
-                    if (queryJson["customerNo"] != null)
-                    {
-                        var customerNo = queryJson["customerNo"].ToString();//客户单号
-                        if (!string.IsNullOrEmpty(customerNo))
-                            results = results.Where(p => p.customerNo.Contains(customerNo));
-                    }
-                    if (queryJson["fundNo"] != null)
-                    {
-                        var fundNo = queryJson["fundNo"].ToString();//款号
-                        if (!string.IsNullOrEmpty(fundNo))
-                            results = results.Where(p => p.fundNo.Contains(fundNo));
-                    }
-                    if (queryJson["itemNo"] != null)
-                    {
-                        var itemNo = queryJson["itemNo"].ToString();//布种
-                        if (!string.IsNullOrEmpty(itemNo))
-                            results = results.Where(p => p.itemNo == itemNo);
-                    }
-                    if (queryJson["cstCode"] != null)
-                    {
-                        var cstCode = queryJson["cstCode"].ToString();//客户
-                        if (!string.IsNullOrEmpty(cstCode))
-                            results = results.Where(p => p.organizationNumber == cstCode);
-                    }
-                    if (queryJson["page"] != null)
-                    {
-                        var pagestr = queryJson["page"].ToString();
+        //            }
+        //            if (queryJson["billNo"] != null)
+        //            {
+        //                var billno = queryJson["billNo"].ToString();//单据编号
+        //                if (!string.IsNullOrEmpty(billno))
+        //                    results = results.Where(p => p.billNo.Contains(billno));
+        //            }
+        //            if (queryJson["fgh"] != null)
+        //            {
+        //                var fgh = queryJson["fgh"].ToString();//缸号
+        //                if (!string.IsNullOrEmpty(fgh))
+        //                    results = results.Where(p => p.gh.Contains(fgh));
+        //            }
+        //            if (queryJson["orderNo"] != null)
+        //            {
+        //                var orderNo = queryJson["orderNo"].ToString();//订单号
+        //                if (!string.IsNullOrEmpty(orderNo))
+        //                    results = results.Where(p => p.orderNo.Contains(orderNo));
+        //            }
+        //            if (queryJson["customerNo"] != null)
+        //            {
+        //                var customerNo = queryJson["customerNo"].ToString();//客户单号
+        //                if (!string.IsNullOrEmpty(customerNo))
+        //                    results = results.Where(p => p.customerNo.Contains(customerNo));
+        //            }
+        //            if (queryJson["fundNo"] != null)
+        //            {
+        //                var fundNo = queryJson["fundNo"].ToString();//款号
+        //                if (!string.IsNullOrEmpty(fundNo))
+        //                    results = results.Where(p => p.fundNo.Contains(fundNo));
+        //            }
+        //            if (queryJson["itemNo"] != null)
+        //            {
+        //                var itemNo = queryJson["itemNo"].ToString();//布种
+        //                if (!string.IsNullOrEmpty(itemNo))
+        //                    results = results.Where(p => p.itemNo == itemNo);
+        //            }
+        //            if (queryJson["cstCode"] != null)
+        //            {
+        //                var cstCode = queryJson["cstCode"].ToString();//客户
+        //                if (!string.IsNullOrEmpty(cstCode))
+        //                    results = results.Where(p => p.organizationNumber == cstCode);
+        //            }
+        //            if (queryJson["page"] != null)
+        //            {
+        //                var pagestr = queryJson["page"].ToString();
 
-                        page = Convert.ToInt32(pagestr);
-                    }
-                    if (queryJson["size"] != null)
-                    {
-                        var sizestr = queryJson["size"].ToString();
-                        size = Convert.ToInt32(sizestr);
-                    }
-                }
-                int total = results.Count();
-                //分页查询
-                results = results.OrderByDescending(p => p.date).Skip((page - 1) * size).Take(size);
-                var data = new SuccessResult();
-                data.Data = new { page = page, size = size, tableData = results.ToList(), total = total };
-                #endregion
+        //                page = Convert.ToInt32(pagestr);
+        //            }
+        //            if (queryJson["size"] != null)
+        //            {
+        //                var sizestr = queryJson["size"].ToString();
+        //                size = Convert.ToInt32(sizestr);
+        //            }
+        //        }
+        //        int total = results.Count();
+        //        //分页查询
+        //        results = results.OrderByDescending(p => p.date).Skip((page - 1) * size).Take(size);
+        //        var data = new SuccessResult();
+        //        data.Data = new { page = page, size = size, tableData = results.ToList(), total = total };
+        //        #endregion
 
-                return Json(data);
-            }
-            catch (Exception ex)
-            {
-                return new FaildResult(ex.InnerException.Message + "\r\n" + ex.Source);
-            }
-        }
+        //        return Json(data);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return new FaildResult(ex.InnerException.Message + "\r\n" + ex.Source);
+        //    }
+        //}
 
         [CacheOutput(ClientTimeSpan = 60, ServerTimeSpan = 60)]
         [Description("明细")]

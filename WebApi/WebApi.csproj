@@ -56,6 +56,10 @@
       <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.1\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -233,14 +237,17 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Common\BaseActionResult.cs" />
     <Compile Include="Common\BaseApiController.cs" />
+    <Compile Include="Common\ExceptionLogAttribute.cs" />
     <Compile Include="Common\FileResult.cs" />
     <Compile Include="Common\GYLCLogFilterAttribute.cs" />
+    <Compile Include="Common\LogHandeler.cs" />
     <Compile Include="Common\LoginAuthorizeAttribute.cs" />
     <Compile Include="Common\NPOIHelper.cs" />
     <Compile Include="Common\PermissionAuthorizeAttribute.cs" />
     <Compile Include="Controllers\DY\AccountController.cs" />
     <Compile Include="Controllers\DY\ControllerActionController.cs" />
     <Compile Include="Controllers\DY\DataTableExtensions.cs" />
+    <Compile Include="Controllers\DY\DeliveryController.cs" />
     <Compile Include="Controllers\DY\HKPgDataController.cs" />
     <Compile Include="Controllers\DY\PermissionController.cs" />
     <Compile Include="Controllers\DY\RoleManageController.cs" />
@@ -252,6 +259,7 @@
     <Compile Include="Controllers\EMT\WorkFlowController.cs" />
     <Compile Include="Controllers\EMT\YZKController.cs" />
     <Compile Include="Controllers\EMT\YzkPartitalController.cs" />
+    <Compile Include="Models\DYModels\DeliveryViewModel.cs" />
     <Compile Include="Models\DYModels\DYDB.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -259,6 +267,9 @@
     </Compile>
     <Compile Include="Models\DYModels\PermissionControllerViewModel.cs" />
     <Compile Include="Models\DYModels\PermissionViewModel.cs" />
+    <Compile Include="Models\DYModels\v_DeliveryTrack.cs">
+      <DependentUpon>DY.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\DYModels\YzkShapiViewModel.cs" />
     <Compile Include="Models\DYModels\TestQueryModel.cs" />
     <Compile Include="Models\DYModels\t_DYJXC_GXHB.cs">
@@ -526,6 +537,7 @@
     <Content Include="Models\DYModels\DYDB.edmx.diagram">
       <DependentUpon>DYDB.edmx</DependentUpon>
     </Content>
+    <Content Include="log4net.config" />
     <None Include="Properties\PublishProfiles\api.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

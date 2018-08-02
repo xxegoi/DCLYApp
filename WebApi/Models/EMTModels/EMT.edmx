@@ -856,6 +856,12 @@
           <Property Name="FDecimal1" Type="decimal" Precision="23" Scale="10" Nullable="false" />
           <Property Name="FPBName" Type="nvarchar" MaxLength="250" Nullable="false" />
           <Property Name="FZHPZ" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FDate1" Type="datetime" />
+          <Property Name="FDate2" Type="datetime" />
+          <Property Name="FDate4" Type="datetime" />
+          <Property Name="FDate5" Type="datetime" />
+          <Property Name="FDate6" Type="datetime" />
+          <Property Name="FDate3" Type="datetime" />
         </EntityType>
         <EntityType Name="t_DY_YZKEntry1">
           <Key>
@@ -1412,6 +1418,10 @@
         <EntityType Name="v_DYJXC_CustomYZKTrack">
           <Key>
             <PropertyRef Name="FID" />
+            
+            
+            
+            
           </Key>
           <Property Name="FID" Type="int" Nullable="false" />
           <Property Name="FGH" Type="nvarchar(max)" Nullable="false" />
@@ -1427,6 +1437,10 @@
         <EntityType Name="v_DYJXC_YZKTrack">
           <Key>
             <PropertyRef Name="FID" />
+            
+            
+            
+            
           </Key>
           <Property Name="FID" Type="int" Nullable="false" />
           <Property Name="FGH" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -2134,6 +2148,12 @@
           <Property Name="FDecimal1" Type="Decimal" Nullable="false" Precision="23" Scale="10" />
           <Property Name="FPBName" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="FZHPZ" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FDate1" Type="DateTime" Precision="3" />
+          <Property Name="FDate2" Type="DateTime" Precision="3" />
+          <Property Name="FDate4" Type="DateTime" Precision="3" />
+          <Property Name="FDate5" Type="DateTime" Precision="3" />
+          <Property Name="FDate6" Type="DateTime" Precision="3" />
+          <Property Name="FDate3" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="t_DY_YZKEntry1">
           <Key>
@@ -3446,7 +3466,13 @@
     <EntitySetMapping Name="t_DY_YZK">
       <EntityTypeMapping TypeName="IsTypeOf(EMT.t_DY_YZK)">
         <MappingFragment StoreEntitySet="t_DY_YZK">
-          <ScalarProperty Name="FZHPZ" ColumnName="FZHPZ" />
+          <ScalarProperty Name="FDate3" ColumnName="FDate3" />
+                <ScalarProperty Name="FDate6" ColumnName="FDate6" />
+                <ScalarProperty Name="FDate5" ColumnName="FDate5" />
+                <ScalarProperty Name="FDate4" ColumnName="FDate4" />
+                <ScalarProperty Name="FDate2" ColumnName="FDate2" />
+                <ScalarProperty Name="FDate1" ColumnName="FDate1" />
+                <ScalarProperty Name="FZHPZ" ColumnName="FZHPZ" />
                 <ScalarProperty Name="FID" ColumnName="FID" />
           <ScalarProperty Name="FClassTypeID" ColumnName="FClassTypeID" />
           <ScalarProperty Name="FBillNo" ColumnName="FBillNo" />

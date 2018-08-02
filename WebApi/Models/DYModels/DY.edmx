@@ -83,6 +83,7 @@
           <Property Name="no_of_roll" Type="int" />
           <Property Name="production_desc" Type="text" />
           <Property Name="IsSync" Type="bit" Nullable="false" />
+          <Property Name="FDate" Type="datetime" />
         </EntityType>
         <EntityType Name="t_RoleSet">
           <Key>
@@ -144,6 +145,30 @@
           <Property Name="FColorNo" Type="varchar" MaxLength="255" />
           <Property Name="FCostPerTon" Type="decimal" Precision="18" Scale="2" />
         </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“DYJXC.dbo.v_DeliveryTrack”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="v_DeliveryTrack">
+          <Key>
+            <PropertyRef Name="FGH" />
+          </Key>
+          <Property Name="FGH" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FDate" Type="datetime" />
+          <Property Name="OrgName" Type="varchar" MaxLength="80" />
+          <Property Name="ItemName" Type="varchar" MaxLength="80" />
+          <Property Name="ItemModel" Type="varchar" MaxLength="255" />
+          <Property Name="DXPlan" Type="datetime" />
+          <Property Name="DXReality" Type="datetime" />
+          <Property Name="DXOutDays" Type="numeric" Precision="17" Scale="6" />
+          <Property Name="YDPlan" Type="datetime" />
+          <Property Name="YDReality" Type="datetime" />
+          <Property Name="YDOutDays" Type="numeric" Precision="17" Scale="6" />
+          <Property Name="RSPlan" Type="datetime" />
+          <Property Name="RSReality" Type="datetime" />
+          <Property Name="RSOutDays" Type="numeric" Precision="17" Scale="6" />
+          <Property Name="RCPlan" Type="datetime" />
+          <Property Name="RCReality" Type="datetime" />
+          <Property Name="RCOutDays" Type="numeric" Precision="17" Scale="6" />
+        </EntityType>
         <EntityContainer Name="DYStoreContainer">
           <EntitySet Name="ControllerActionRoleSet" EntityType="Self.ControllerActionRoleSet" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ControllerActionSet" EntityType="Self.ControllerActionSet" Schema="dbo" store:Type="Tables" />
@@ -169,6 +194,27 @@
     [t_Material].[FCostPerTon] AS [FCostPerTon]
     FROM [dbo].[t_Material] AS [t_Material]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="v_DeliveryTrack" EntityType="Self.v_DeliveryTrack" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_DeliveryTrack].[FGH] AS [FGH], 
+    [v_DeliveryTrack].[FDate] AS [FDate], 
+    [v_DeliveryTrack].[OrgName] AS [OrgName], 
+    [v_DeliveryTrack].[ItemName] AS [ItemName], 
+    [v_DeliveryTrack].[ItemModel] AS [ItemModel], 
+    [v_DeliveryTrack].[DXPlan] AS [DXPlan], 
+    [v_DeliveryTrack].[DXReality] AS [DXReality], 
+    [v_DeliveryTrack].[DXOutDays] AS [DXOutDays], 
+    [v_DeliveryTrack].[YDPlan] AS [YDPlan], 
+    [v_DeliveryTrack].[YDReality] AS [YDReality], 
+    [v_DeliveryTrack].[YDOutDays] AS [YDOutDays], 
+    [v_DeliveryTrack].[RSPlan] AS [RSPlan], 
+    [v_DeliveryTrack].[RSReality] AS [RSReality], 
+    [v_DeliveryTrack].[RSOutDays] AS [RSOutDays], 
+    [v_DeliveryTrack].[RCPlan] AS [RCPlan], 
+    [v_DeliveryTrack].[RCReality] AS [RCReality], 
+    [v_DeliveryTrack].[RCOutDays] AS [RCOutDays]
+    FROM [dbo].[v_DeliveryTrack] AS [v_DeliveryTrack]</DefiningQuery>
+          </EntitySet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -183,6 +229,7 @@
           <EntitySet Name="t_DYJXC_GXHB" EntityType="DY.t_DYJXC_GXHB" />
           <EntitySet Name="t_HK_PGData" EntityType="DY.t_HK_PGData" />
           <EntitySet Name="t_Material" EntityType="DY.t_Material" />
+          <EntitySet Name="v_DeliveryTrack" EntityType="DY.v_DeliveryTrack" />
         </EntityContainer>
         <EntityType Name="ControllerActionRoleSet">
           <Key>
@@ -300,6 +347,7 @@
           <Property Name="no_of_roll" Type="Int32" />
           <Property Name="production_desc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="IsSync" Type="Boolean" Nullable="false" />
+          <Property Name="FDate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="t_Material">
           <Key>
@@ -320,6 +368,28 @@
           <Property Name="FOrderPrice" Type="Double" />
           <Property Name="FColorNo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="FCostPerTon" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="v_DeliveryTrack">
+          <Key>
+            <PropertyRef Name="FGH" />
+          </Key>
+          <Property Name="FGH" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FDate" Type="DateTime" Precision="3" />
+          <Property Name="OrgName" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="ItemName" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="ItemModel" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="DXPlan" Type="DateTime" Precision="3" />
+          <Property Name="DXReality" Type="DateTime" Precision="3" />
+          <Property Name="YDPlan" Type="DateTime" Precision="3" />
+          <Property Name="YDReality" Type="DateTime" Precision="3" />
+          <Property Name="RSPlan" Type="DateTime" Precision="3" />
+          <Property Name="RSReality" Type="DateTime" Precision="3" />
+          <Property Name="RCPlan" Type="DateTime" Precision="3" />
+          <Property Name="RCReality" Type="DateTime" Precision="3" />
+          <Property Name="DXOutDays" Type="Decimal" Precision="17" Scale="6" />
+          <Property Name="YDOutDays" Type="Decimal" Precision="17" Scale="6" />
+          <Property Name="RSOutDays" Type="Decimal" Precision="17" Scale="6" />
+          <Property Name="RCOutDays" Type="Decimal" Precision="17" Scale="6" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -434,6 +504,7 @@
           <EntitySetMapping Name="t_HK_PGData">
             <EntityTypeMapping TypeName="DY.t_HK_PGData">
               <MappingFragment StoreEntitySet="t_HK_PGData">
+                <ScalarProperty Name="FDate" ColumnName="FDate" />
                 <ScalarProperty Name="IsSync" ColumnName="IsSync" />
                 <ScalarProperty Name="production_desc" ColumnName="production_desc" />
                 <ScalarProperty Name="no_of_roll" ColumnName="no_of_roll" />
@@ -467,6 +538,29 @@
                 <ScalarProperty Name="FModel" ColumnName="FModel" />
                 <ScalarProperty Name="FNumber" ColumnName="FNumber" />
                 <ScalarProperty Name="FItemID" ColumnName="FItemID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_DeliveryTrack">
+            <EntityTypeMapping TypeName="DY.v_DeliveryTrack">
+              <MappingFragment StoreEntitySet="v_DeliveryTrack">
+                <ScalarProperty Name="RCOutDays" ColumnName="RCOutDays" />
+                <ScalarProperty Name="RSOutDays" ColumnName="RSOutDays" />
+                <ScalarProperty Name="YDOutDays" ColumnName="YDOutDays" />
+                <ScalarProperty Name="DXOutDays" ColumnName="DXOutDays" />
+                <ScalarProperty Name="RCReality" ColumnName="RCReality" />
+                <ScalarProperty Name="RCPlan" ColumnName="RCPlan" />
+                <ScalarProperty Name="RSReality" ColumnName="RSReality" />
+                <ScalarProperty Name="RSPlan" ColumnName="RSPlan" />
+                <ScalarProperty Name="YDReality" ColumnName="YDReality" />
+                <ScalarProperty Name="YDPlan" ColumnName="YDPlan" />
+                <ScalarProperty Name="DXReality" ColumnName="DXReality" />
+                <ScalarProperty Name="DXPlan" ColumnName="DXPlan" />
+                <ScalarProperty Name="ItemModel" ColumnName="ItemModel" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="OrgName" ColumnName="OrgName" />
+                <ScalarProperty Name="FDate" ColumnName="FDate" />
+                <ScalarProperty Name="FGH" ColumnName="FGH" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

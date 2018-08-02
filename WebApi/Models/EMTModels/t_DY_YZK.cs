@@ -160,5 +160,11 @@ namespace WebApi.Models.EMTModels
         public decimal FDecimal1 { get; set; }
         public string FPBName { get; set; }
         public string FZHPZ { get; set; }
+        public Nullable<System.DateTime> FDate1 { get; set; }
+        public Nullable<System.DateTime> FDate2 { get; set; }
+        public Nullable<System.DateTime> FDate4 { get; set; }
+        public Nullable<System.DateTime> FDate5 { get; set; }
+        public Nullable<System.DateTime> FDate6 { get; set; }
+        public Nullable<System.DateTime> FDate3 { get; set; }
     }
 }
