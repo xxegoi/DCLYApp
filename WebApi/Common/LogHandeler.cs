@@ -8,8 +8,8 @@ namespace WebApi.Common
 {
     public class LogHandeler
     {
-        private static ILog info = LogManager.GetLogger("Info");
-        private static ILog error = LogManager.GetLogger("ExceptionLog");
+        private static ILog info = LogManager.GetLogger("INFO");
+        private static ILog error = LogManager.GetLogger("Exception");
 
         public static void Info(string message)
         {

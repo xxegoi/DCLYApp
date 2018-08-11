@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using WebApi.Common;
+using log4net;
 
 namespace WebApi
 {
@@ -14,6 +15,8 @@ namespace WebApi
     {
         protected void Application_Start()
         {
+            log4net.Config.XmlConfigurator.Configure();
+
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

@@ -30,7 +30,7 @@ namespace WebApi.Controllers.DY
                 cas.ForEach(p =>
                 {
                     //如果程序集不存在此CONTROLLER，则删除这条记录
-                    if (types.Where(c => c.Name == p.ControllerName).Count() == 0)
+                    if (types.Where(c => c.Name == p.ControllerName + "Controller").Count() == 0)
                     {
                         db.ControllerActionSet.Attach(p);
                         db.Entry(p).State = System.Data.Entity.EntityState.Deleted;
@@ -70,7 +70,7 @@ namespace WebApi.Controllers.DY
                         if (action == null)
                         {
                             //如果此CONTROLLER  ACTION不存在于数据库中，则插入新记录到数据库中
-                            if (cas.Count(c => c.ControllerName == p.Name && c.Name == a.Name) == 0)
+                            if (cas.Count(c => c.ControllerName+"Controller" == p.Name && c.Name == a.Name) == 0)
                             {
                                 ControllerActionSet ca = new ControllerActionSet()
                                 {
