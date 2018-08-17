@@ -34,5 +34,6 @@ namespace WebApi.Models.DYModels
         public virtual DbSet<t_HK_PGData> t_HK_PGData { get; set; }
         public virtual DbSet<t_Material> t_Material { get; set; }
         public virtual DbSet<v_DeliveryTrack> v_DeliveryTrack { get; set; }
+        public virtual DbSet<v_YzkRS> v_YzkRS { get; set; }
     }
 }

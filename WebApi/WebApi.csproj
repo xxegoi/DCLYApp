@@ -251,6 +251,7 @@
     <Compile Include="Controllers\DY\HKPgDataController.cs" />
     <Compile Include="Controllers\DY\PermissionController.cs" />
     <Compile Include="Controllers\DY\RoleManageController.cs" />
+    <Compile Include="Controllers\DY\YzkRSController.cs" />
     <Compile Include="Controllers\DY\YzkShapiController.cs" />
     <Compile Include="Controllers\DY\TestDataController.cs" />
     <Compile Include="Controllers\DY\UserManageController.cs" />
@@ -268,6 +269,9 @@
     <Compile Include="Models\DYModels\PermissionControllerViewModel.cs" />
     <Compile Include="Models\DYModels\PermissionViewModel.cs" />
     <Compile Include="Models\DYModels\v_DeliveryTrack.cs">
+      <DependentUpon>DY.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DYModels\v_YzkRS.cs">
       <DependentUpon>DY.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DYModels\YzkShapiViewModel.cs" />

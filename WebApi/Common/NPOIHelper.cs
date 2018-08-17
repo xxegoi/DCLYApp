@@ -117,6 +117,52 @@ namespace WebApi.Common
 
         }
 
+        /// <summary>
+        /// 泛型对象转换成流
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        public static byte[] ExportToByteArray<T>(IEnumerable<T> list)where T:class,new()
+        {
+            var t = typeof(T);
+            var pis = t.GetProperties().ToList();
+            int r = 0;
+            IWorkbook book = new XSSFWorkbook();
+            ISheet sheet = book.CreateSheet("Sheet1");
+            IRow header = sheet.CreateRow(r);
+
+            pis.ForEach(p =>
+            {
+                var i = pis.IndexOf(p);
+                header.CreateCell(i).SetCellValue(p.Name);
+            });
+
+            r++;
+
+            foreach(var item in list)
+            {
+                IRow row = sheet.CreateRow(r);
+                pis.ForEach(p =>
+                {
+                    var i = pis.IndexOf(p);
+                    var value = p.GetValue(item) == null ? "" : p.GetValue(item).ToString();
+                    row.CreateCell(i).SetCellValue(value);
+                });
+                r++;
+            }
+
+            using (MemoryStream stream = new MemoryStream())
+            {
+                book.Write(stream);
+
+                byte[] bytes = stream.ToArray();
+
+                return bytes;
+            }
+
+        }
+
         public static List<DataTable> GetDataTablesFrom(string xlsxFile)
         {
             if (!File.Exists(xlsxFile))

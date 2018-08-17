@@ -169,6 +169,21 @@
           <Property Name="RCReality" Type="datetime" />
           <Property Name="RCOutDays" Type="numeric" Precision="17" Scale="6" />
         </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“DYJXC.dbo.v_YzkRS”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="v_YzkRS">
+          <Key>
+            <PropertyRef Name="缸号" />
+          </Key>
+          <Property Name="缸号" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="开卡日期" Type="datetime" />
+          <Property Name="客户名称" Type="varchar" MaxLength="80" />
+          <Property Name="胚重" Type="decimal" Precision="38" Scale="10" />
+          <Property Name="条数" Type="int" />
+          <Property Name="实重" Type="numeric" Precision="16" Scale="6" />
+          <Property Name="净重" Type="numeric" Precision="22" Scale="6" />
+          <Property Name="染损" Type="numeric" Precision="38" Scale="6" />
+        </EntityType>
         <EntityContainer Name="DYStoreContainer">
           <EntitySet Name="ControllerActionRoleSet" EntityType="Self.ControllerActionRoleSet" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ControllerActionSet" EntityType="Self.ControllerActionSet" Schema="dbo" store:Type="Tables" />
@@ -215,6 +230,18 @@
     [v_DeliveryTrack].[RCOutDays] AS [RCOutDays]
     FROM [dbo].[v_DeliveryTrack] AS [v_DeliveryTrack]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="v_YzkRS" EntityType="Self.v_YzkRS" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_YzkRS].[缸号] AS [缸号], 
+    [v_YzkRS].[开卡日期] AS [开卡日期], 
+    [v_YzkRS].[客户名称] AS [客户名称], 
+    [v_YzkRS].[胚重] AS [胚重], 
+    [v_YzkRS].[条数] AS [条数], 
+    [v_YzkRS].[实重] AS [实重], 
+    [v_YzkRS].[净重] AS [净重], 
+    [v_YzkRS].[染损] AS [染损]
+    FROM [dbo].[v_YzkRS] AS [v_YzkRS]</DefiningQuery>
+          </EntitySet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -230,6 +257,7 @@
           <EntitySet Name="t_HK_PGData" EntityType="DY.t_HK_PGData" />
           <EntitySet Name="t_Material" EntityType="DY.t_Material" />
           <EntitySet Name="v_DeliveryTrack" EntityType="DY.v_DeliveryTrack" />
+          <EntitySet Name="v_YzkRS" EntityType="DY.v_YzkRS" />
         </EntityContainer>
         <EntityType Name="ControllerActionRoleSet">
           <Key>
@@ -390,6 +418,19 @@
           <Property Name="YDOutDays" Type="Decimal" Precision="17" Scale="6" />
           <Property Name="RSOutDays" Type="Decimal" Precision="17" Scale="6" />
           <Property Name="RCOutDays" Type="Decimal" Precision="17" Scale="6" />
+        </EntityType>
+        <EntityType Name="v_YzkRS">
+          <Key>
+            <PropertyRef Name="缸号" />
+          </Key>
+          <Property Name="缸号" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="开卡日期" Type="DateTime" Precision="3" />
+          <Property Name="客户名称" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="胚重" Type="Decimal" Precision="38" Scale="10" />
+          <Property Name="条数" Type="Int32" />
+          <Property Name="实重" Type="Decimal" Precision="16" Scale="6" />
+          <Property Name="净重" Type="Decimal" Precision="22" Scale="6" />
+          <Property Name="染损" Type="Decimal" Precision="38" Scale="6" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -561,6 +602,20 @@
                 <ScalarProperty Name="OrgName" ColumnName="OrgName" />
                 <ScalarProperty Name="FDate" ColumnName="FDate" />
                 <ScalarProperty Name="FGH" ColumnName="FGH" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_YzkRS">
+            <EntityTypeMapping TypeName="DY.v_YzkRS">
+              <MappingFragment StoreEntitySet="v_YzkRS">
+                <ScalarProperty Name="染损" ColumnName="染损" />
+                <ScalarProperty Name="净重" ColumnName="净重" />
+                <ScalarProperty Name="实重" ColumnName="实重" />
+                <ScalarProperty Name="条数" ColumnName="条数" />
+                <ScalarProperty Name="胚重" ColumnName="胚重" />
+                <ScalarProperty Name="客户名称" ColumnName="客户名称" />
+                <ScalarProperty Name="开卡日期" ColumnName="开卡日期" />
+                <ScalarProperty Name="缸号" ColumnName="缸号" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
